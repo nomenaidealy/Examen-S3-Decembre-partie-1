@@ -1,8 +1,6 @@
 <?php
 
 use app\controllers\ApiExampleController;
-use app\controllers\ProduitController;
-use app\controllers\DetailController;
 use app\middlewares\SecurityHeadersMiddleware;
 use flight\Engine;
 use flight\net\Router;

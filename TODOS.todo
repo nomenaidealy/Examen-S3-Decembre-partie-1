@@ -1,0 +1,57 @@
+[] création de la base de donnée :
+    - vehicules
+        - id
+        - numéro d'immatriculation
+
+    - cout journier vehicule :
+        - id 
+        - debut
+        - fin
+        - idVehicule
+        - montant
+
+    - livreurs
+        - id 
+        - nom
+
+    - salaire journalier chauffeur :
+        - id
+        - debut
+        - fin
+        - idLivreur
+        - montant
+
+    - zone de livraison
+        - id 
+        - nom
+
+    - addresse 
+        - id
+        - addresse
+
+    - affectation vehicule
+        - id
+        - idVehicules
+        - idLivreur
+        - date
+
+    - status de livraison :
+        - id
+        - libele (attente, livré, annulé)
+
+    - colis :
+        - id
+        - poids
+        - prixParKilos
+        - libele
+
+    - livraison
+        - id
+        - idColis
+        - idLivreur
+        - idVehicule
+        - idAdresseDepart
+        - idADresseDestination
+        - dateLivraison
+        - idStatus
+        - coutRevient
