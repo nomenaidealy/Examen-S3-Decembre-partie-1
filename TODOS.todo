@@ -55,3 +55,32 @@
         - dateLivraison
         - idStatus
         - coutRevient
+
+[] Page d'accueil :
+    fonctionnalité :
+        - Liste de livraison avec leur état
+        - Changement d'état (de base on met en attente) :
+            - livré
+            - annulé
+            - attente
+        - Lien création de livraison
+    base :
+        - livraison
+    controller :
+        - LivraisonController
+    model :
+        - Livraison
+    fonction :
+        - getAll
+        - mettre en attente ---update la colonne status
+        - annuler           ---update la colonne status
+        - livré             ---update la colonne status
+    view :
+        - accueiil.php 
+            - Tableau des livraison avec status
+                liste deroulante
+        - header.php
+        - footer.php
+    routage :
+        - accueil :
+            - updateStatus/@idLivraison&&@idNewStatus
