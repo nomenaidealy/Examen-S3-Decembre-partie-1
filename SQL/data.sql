@@ -1,6 +1,9 @@
 -- -------------------------------
 -- 1. Table Vehicules
 -- -------------------------------
+CREATE DATABASE  colis_express ;
+use colis_express ;
+
 CREATE TABLE Vehicule (
     id INT AUTO_INCREMENT PRIMARY KEY,
     numeroImmatriculation VARCHAR(20) NOT NULL
