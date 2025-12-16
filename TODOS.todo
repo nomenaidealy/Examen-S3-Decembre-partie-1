@@ -1,51 +1,51 @@
-[] création de la base de donnée :
-    - vehicules
+[x] création de la base de donnée : by Idealy
+    (ok) - vehicules :
         - id
         - numéro d'immatriculation
 
-    - cout journier vehicule :
+    (ok) - cout journier vehicule :
         - id 
         - debut
         - fin
         - idVehicule
         - montant
 
-    - livreurs
+    (ok) - livreurs :
         - id 
         - nom
 
-    - salaire journalier chauffeur :
+    (ok) - salaire journalier chauffeur :
         - id
         - debut
         - fin
         - idLivreur
         - montant
 
-    - zone de livraison
+    (ok) - zone de livraison :
         - id 
         - nom
 
-    - addresse 
+    (ok) - addresse :
         - id
         - addresse
 
-    - affectation vehicule
+    (ok) - affectation vehicule :
         - id
         - idVehicules
         - idLivreur
         - date
 
-    - status de livraison :
+    (ok) - status de livraison :
         - id
         - libele (attente, livré, annulé)
 
-    - colis :
+    (ok) - colis :
         - id
         - poids
         - prixParKilos
         - libele
 
-    - livraison
+    (ok) - livraison :
         - id
         - idColis
         - idLivreur
