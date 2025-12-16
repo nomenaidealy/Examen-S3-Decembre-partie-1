@@ -67,11 +67,10 @@ return [
 	 **************************************/
 	'database' => [
 		// MySQL Example:
-		'host'     => 'localhost',      //Database host (e.g., 'localhost', 'db.example.com')
-		'dbname'   => 'tpflight',   //Database name (e.g., 'flightphp')
-		'port'     => '5432',    // Database port (e.g., '3306' for MySQL, '5432' for PostgreSQL)
-		'user'     => 'rojo',  //Database user (e.g., 'root')
-		'password' => '1234',  //Database password (never commit real passwords)
+		'host'     => 'localhost:3306',      //Database host (e.g., 'localhost', 'db.example.com')
+		'dbname'   => 'colis_express',   //Database name (e.g., 'flightphp')
+		'user'     => 'root',  //Database user (e.g., 'root')
+		'password' => '',  //Database password (never commit real passwords)
 
 		// SQLite Example:
 		// 'file_path' => __DIR__ . $ds . '..' . $ds . 'database.sqlite', // Path to SQLite file

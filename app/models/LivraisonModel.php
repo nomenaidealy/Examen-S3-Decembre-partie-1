@@ -10,21 +10,11 @@ class LivraisonModel {
     public function __construct($db) {
         $this->db = $db;
     }
-    public function getProduits () {   
-        $stmt = $this->db->prepare("SELECT * FROM produits");
+    public function getLivraisonS () {   
+        $stmt = $this->db->prepare("SELECT * FROM vue_livraisons");
         $stmt->execute();
-        $produits = $stmt->fetchAll(\PDO::FETCH_ASSOC);
-        return $produits;
+        $livraisons = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $livraisons;
     }
 
-    // Ajout : retourne un produit par id ou null si introuvable
-    public function getProduit(int $id)
-    {
-        foreach ($this->getProduits() as $produit) {
-            if ($produit['id'] === $id) {
-                return $produit;
-            }
-        }
-        return null;
-    }
 }

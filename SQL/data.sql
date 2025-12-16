@@ -114,7 +114,7 @@ INSERT INTO zone_livraison (nom) VALUES
 ('Zone Est'),
 ('Zone Ouest');
 
-
+CREATE OR REPLACE VIEW vue_livraisons AS
 SELECT 
     l.id,
     c.description AS colis,
