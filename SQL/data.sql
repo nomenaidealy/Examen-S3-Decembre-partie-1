@@ -113,3 +113,27 @@ INSERT INTO zone_livraison (nom) VALUES
 ('Zone Sud'),
 ('Zone Est'),
 ('Zone Ouest');
+
+
+SELECT 
+    l.id,
+    c.description AS colis,
+    c.poids,
+    c.prix_par_kilos,
+    lr.nom AS livreur,
+    v.numero_immatriculation AS vehicule,
+    a_dep.adresse AS adresse_depart,
+    a_dest.adresse AS adresse_destination,
+    l.date_livraison,
+    s.libele AS statut,
+    l.salaire_chauffeur,
+    l.cout_vehicule,
+    l.cout_revient,
+    l.chiffre_affaire
+FROM livraison l
+JOIN colis c ON l.id_colis = c.id
+JOIN livreur lr ON l.id_livreur = lr.id
+JOIN vehicule v ON l.id_vehicule = v.id
+JOIN adresse a_dep ON l.id_adresse_depart = a_dep.id
+JOIN adresse a_dest ON l.id_adresse_destination = a_dest.id
+JOIN status_livraison s ON l.id_status = s.id;
