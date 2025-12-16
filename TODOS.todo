@@ -3,23 +3,9 @@
         - id
         - numéro d'immatriculation
 
-    (ok) - cout journier vehicule :
-        - id 
-        - debut
-        - fin
-        - idVehicule
-        - montant
-
     (ok) - livreurs :
         - id 
         - nom
-
-    (ok) - salaire journalier chauffeur :
-        - id
-        - debut
-        - fin
-        - idLivreur
-        - montant
 
     (ok) - zone de livraison :
         - id 
@@ -28,12 +14,6 @@
     (ok) - addresse :
         - id
         - addresse
-
-    (ok) - affectation vehicule :
-        - id
-        - idVehicules
-        - idLivreur
-        - date
 
     (ok) - status de livraison :
         - id
