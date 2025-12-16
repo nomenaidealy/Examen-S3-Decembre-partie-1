@@ -1,39 +1,28 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Accueil - E-commerce</title>
-    <link rel="stylesheet" href="./assets/styles.css">
+    <title>Document</title>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <nav>
-                <a href="index.html" class="logo">E-Varotra</a>
-                <ul class="menu">
-                    <li><a href="index.html">Accueil</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-    <main>
-        <h1>Bienvenue sur notre boutique</h1>
-        <section class="product-list">
-            <?php foreach ($produits as $produit): ?>
-            <article class="product-card">
-                <a href="produit/<?php echo htmlspecialchars($produit['id']); ?>">
-                    <img src="./assets/images/<?php echo htmlspecialchars($produit['image']); ?>" alt="<?php echo htmlspecialchars($produit['nom']); ?>">
-                    <h2><?php echo htmlspecialchars($produit['nom']); ?></h2>
-                    <p>Prix : <?php echo htmlspecialchars($produit['prix']); ?></p>
-                </a>
-            </article>
-            <?php endforeach; ?>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2025 E-Varotra</p>
-    </footer>
+    <h1>Les listes de livraisons et leurs Status</h1>
+    <table border = "1">
+        <th>Colis</th>
+        <th></th>
+        <th></th>
+    </table>
 </body>
 </html>
+
+
+
+ select * from livraison;
++----+----------+------------+-------------+-------------------+------------------------+----------------+-----------+-------------------+---------------+--------------+-----------------+
+| id | id_colis | id_livreur | id_vehicule | id_adresse_depart | id_adresse_destination | date_livraison | id_status | salaire_chauffeur | cout_vehicule | cout_revient | chiffre_affaire |
++----+----------+------------+-------------+-------------------+------------------------+----------------+-----------+-------------------+---------------+--------------+-----------------+
+|  1 |        1 |          1 |           1 |                 1 |                      2 | 2025-12-16     |         1 |             40.00 |         50.00 |        90.00 |           50.00 |
+|  2 |        2 |          2 |           2 |                 1 |                      3 | 2025-12-16     |         1 |             50.00 |         30.00 |        80.00 |           50.00 |
+|  3 |        3 |          3 |           3 |                 1 |                      4 | 2025-12-16     |         1 |             45.00 |         45.00 |        90.00 |           45.00 |
++----+----------+------------+-------------+-------------------+------------------------+----------------+-----------+-------------------+---------------+--------------+-----------------+
+

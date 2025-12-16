@@ -1,38 +1,26 @@
 -- -------------------------------
--- 1. Table Vehicules
+-- Création de la base
 -- -------------------------------
-CREATE DATABASE  colis_express ;
-use colis_express ;
 
+CREATE DATABASE colis_express;
+USE colis_express;
+
+-- -------------------------------
+-- 1. Table vehicule
+-- -------------------------------
 CREATE TABLE vehicule (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    numeroImmatriculation VARCHAR(20) NOT NULL
+    numero_immatriculation VARCHAR(20) NOT NULL,
+    type VARCHAR(50)
 );
 
-INSERT INTO vehicule (numeroImmatriculation) VALUES
-('AB123CD'),
-('XY987ZT'),
-('ZZ999YY');
+INSERT INTO vehicule (numero_immatriculation, type) VALUES
+('AB123CD', 'Camion'),
+('XY987ZT', 'Van'),
+('ZZ999YY', 'Camion');
 
 -- -------------------------------
--- 2. Table CoutJournalierVehicule
--- -------------------------------
-CREATE TABLE coutJournalierVehicule (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    debut DATE NOT NULL,
-    fin DATE NOT NULL,
-    idVehicule INT NOT NULL,
-    montant DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (idVehicule) REFERENCES vehicule(id)
-);
-
-INSERT INTO coutJournalierVehicule (debut, fin, idVehicule, montant) VALUES
-('2025-01-01', '2025-12-31', 1, 50.00),
-('2025-01-01', '2025-12-31', 2, 30.00),
-('2025-01-01', '2025-12-31', 3, 45.00);
-
--- -------------------------------
--- 3. Table Livreurs
+-- 2. Table livreur
 -- -------------------------------
 CREATE TABLE livreur (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -45,38 +33,7 @@ INSERT INTO livreur (nom) VALUES
 ('Alice Dupont');
 
 -- -------------------------------
--- 4. Table SalaireJournalierChauffeur
--- -------------------------------
-CREATE TABLE salaireJournalierChauffeur (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    debut DATE NOT NULL,
-    fin DATE NOT NULL,
-    idLivreur INT NOT NULL,
-    montant DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (idLivreur) REFERENCES livreur(id)
-);
-
-INSERT INTO salaireJournalierChauffeur (debut, fin, idLivreur, montant) VALUES
-('2025-01-01', '2025-12-31', 1, 40.00),
-('2025-01-01', '2025-12-31', 2, 50.00),
-('2025-01-01', '2025-12-31', 3, 45.00);
-
--- -------------------------------
--- 5. Table ZoneLivraison
--- -------------------------------
-CREATE TABLE zoneLivraison (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nom VARCHAR(100) NOT NULL
-);
-
-INSERT INTO zoneLivraison (nom) VALUES
-('Zone Nord'),
-('Zone Sud'),
-('Zone Est'),
-('Zone Ouest');
-
--- -------------------------------
--- 6. Table Adresse
+-- 3. Table adresse
 -- -------------------------------
 CREATE TABLE adresse (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -84,80 +41,75 @@ CREATE TABLE adresse (
 );
 
 INSERT INTO adresse (adresse) VALUES
-('Entrepot Central'),
+('Entrepot Central'), -- Départ fixe
 ('123 Rue Principale'),
 ('456 Avenue du Parc'),
 ('789 Boulevard de la Ville');
 
 -- -------------------------------
--- 7. Table AffectationVehicule
+-- 4. Table status_livraison
 -- -------------------------------
-CREATE TABLE affectationVehicule (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    idVehicule INT NOT NULL,
-    idLivreur INT NOT NULL,
-    dateAffectation DATE NOT NULL,
-    FOREIGN KEY (idVehicule) REFERENCES vehicule(id),
-    FOREIGN KEY (idLivreur) REFERENCES livreur(id)
-);
-
-INSERT INTO affectationVehicule (idVehicule, idLivreur, dateAffectation) VALUES
-(1, 1, '2025-12-16'),
-(2, 2, '2025-12-16'),
-(3, 3, '2025-12-16');
-
--- -------------------------------
--- 8. Table StatusLivraison
--- -------------------------------
-CREATE TABLE statusLivraison (
+CREATE TABLE status_livraison (
     id INT AUTO_INCREMENT PRIMARY KEY,
     libele VARCHAR(50) NOT NULL
 );
 
-INSERT INTO statusLivraison (libele) VALUES
+INSERT INTO status_livraison (libele) VALUES
 ('en attente'),
 ('livré'),
 ('annulé');
 
 -- -------------------------------
--- 9. Table Colis
+-- 5. Table colis
 -- -------------------------------
 CREATE TABLE colis (
     id INT AUTO_INCREMENT PRIMARY KEY,
     poids DECIMAL(10,2) NOT NULL,
-    prixParKilos DECIMAL(10,2) NOT NULL,
-    libele VARCHAR(255)
+    prix_par_kilos DECIMAL(10,2) NOT NULL,  -- Montant gagné par kg
+    description VARCHAR(255)
 );
 
-INSERT INTO colis (poids, prixParKilos, libele) VALUES
+INSERT INTO colis (poids, prix_par_kilos, description) VALUES
 (10, 5, 'Electronique'),
 (20, 2.5, 'Livres'),
 (15, 3, 'Vêtements');
 
 -- -------------------------------
--- 10. Table Livraison
+-- 6. Table livraison
 -- -------------------------------
 CREATE TABLE livraison (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    idColis INT NOT NULL,
-    idLivreur INT NOT NULL,
-    idVehicule INT NOT NULL,
-    idAdresseDepart INT NOT NULL,
-    idAdresseDestination INT NOT NULL,
-    dateLivraison DATE NOT NULL,
-    idStatus INT NOT NULL,
-    coutRevient DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (idColis) REFERENCES colis(id),
-    FOREIGN KEY (idLivreur) REFERENCES livreur(id),
-    FOREIGN KEY (idVehicule) REFERENCES vehicule(id),
-    FOREIGN KEY (idAdresseDepart) REFERENCES adresse(id),
-    FOREIGN KEY (idAdresseDestination) REFERENCES adresse(id),
-    FOREIGN KEY (idStatus) REFERENCES statusLivraison(id)
+    id_colis INT NOT NULL REFERENCES colis(id),
+    id_livreur INT NOT NULL REFERENCES livreur(id),
+    id_vehicule INT NOT NULL REFERENCES vehicule(id),
+    id_adresse_depart INT NOT NULL REFERENCES adresse(id), -- Toujours entrepôt
+    id_adresse_destination INT NOT NULL REFERENCES adresse(id),
+    date_livraison DATE NOT NULL,
+    id_status INT NOT NULL REFERENCES status_livraison(id),
+    salaire_chauffeur DECIMAL(10,2) NOT NULL,  -- Salaire pour cette livraison
+    cout_vehicule DECIMAL(10,2) NOT NULL,      -- Coût du véhicule pour cette livraison
+    cout_revient DECIMAL(10,2) NOT NULL,       -- salaire + véhicule
+    chiffre_affaire DECIMAL(10,2) NOT NULL     -- poids * prixParKg
 );
 
--- Exemple d’insertion calcul coutRevient : salaire + cout véhicule + poids*prix/kg
-INSERT INTO livraison (idColis, idLivreur, idVehicule, idAdresseDepart, idAdresseDestination, dateLivraison, idStatus, coutRevient)
+-- Exemple d’insertion calculée :
+INSERT INTO livraison 
+(id_colis, id_livreur, id_vehicule, id_adresse_depart, id_adresse_destination, date_livraison, id_status, salaire_chauffeur, cout_vehicule, cout_revient, chiffre_affaire)
 VALUES
-(1, 1, 1, 1, 2, '2025-12-16', 1, 40+50+10*5),  -- 40 salaire + 50 véhicule + 50 colis
-(2, 2, 2, 1, 3, '2025-12-16', 1, 50+30+20*2.5), -- 50+30+50
-(3, 3, 3, 1, 4, '2025-12-16', 1, 45+45+15*3);   -- 45+45+45
+(1, 1, 1, 1, 2, '2025-12-16', 1, 40, 50, 90, 10*5),
+(2, 2, 2, 1, 3, '2025-12-16', 1, 50, 30, 80, 20*2.5),
+(3, 3, 3, 1, 4, '2025-12-16', 1, 45, 45, 90, 15*3);
+
+-- -------------------------------
+-- 7. Table zone_livraison (optionnelle)
+-- -------------------------------
+CREATE TABLE zone_livraison (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL
+);
+
+INSERT INTO zone_livraison (nom) VALUES
+('Zone Nord'),
+('Zone Sud'),
+('Zone Est'),
+('Zone Ouest');
