@@ -1,49 +1,46 @@
-<?php 
-$title = 'Liste des livraisons';
-require_once 'header.php';
-?>
-
-<h2 >Liste des livraisons</h2>
-
-<div >
-    <table border="1" >
-        <thead >
-            <tr >
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Liste des livraisons</h1>
+    <table border="1">
+            <tr>
                 <th>Colis</th>
-                <th>Poids</th>
-                <th>Prix/kg</th>
-                <th>Livreur</th>
-                <th>Véhicule</th>
-                <th>Adresse départ</th>
-                <th>Destination</th>
-                <th>Date</th>
-                <th>Status</th>
-                <th>Salaire</th>
-                <th>Coût véhicule</th>
-                <th>Coût revient</th>
-                <th>Chiffre d'affaire</th>
+                <th>poids</th>
+                <th>depart</th>
+                <th>destination</th>
+                <th>date_livraison</th>
+                <th>statut</th>
+                <th>vehicule</th>
+                <th>chauffeur</th>
+                <th>cout_vehicule</th>
+                <th>salaire</th>
+                <th>chiffre_affaire</th>
+                <th>cout_revient</th>
             </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($data as $l): ?>
+    
+             <?php foreach ($data as $l): ?>
             <tr>
                 <td><?= htmlspecialchars($l['colis']) ?></td>
                 <td><?= $l['poids'] ?></td>
-                <td><?= $l['prix_par_kilos'] ?></td>
-                <td><?= htmlspecialchars($l['livreur']) ?></td>
+                <td><?= $l['depart'] ?></td>
+                <td><?= htmlspecialchars($l['destination']) ?></td>
+                <td><?= htmlspecialchars($l['date_livraison']) ?></td>
+                <td><?= htmlspecialchars($l['statut']) ?></td>
                 <td><?= htmlspecialchars($l['vehicule']) ?></td>
-                <td><?= htmlspecialchars($l['adresse_depart']) ?></td>
-                <td><?= htmlspecialchars($l['adresse_destination']) ?></td>
-                <td><?= $l['date_livraison'] ?></td>
-                <td class="fw-bold text-primary"><?= htmlspecialchars($l['statut']) ?></td>
-                <td><?= $l['salaire_chauffeur'] ?></td>
-                <td><?= $l['cout_vehicule'] ?></td>
-                <td><?= $l['cout_revient'] ?></td>
+                <td><?= $l['chauffeur'] ?></td>
+                <td><?= htmlspecialchars($l['cout_vehicule']) ?></td>
+                <td><?= $l['salaire'] ?></td>
                 <td ><?= $l['chiffre_affaire'] ?></td>
+                <td><?= $l['cout_revient'] ?></td>
             </tr>
         <?php endforeach; ?>
-        </tbody>
     </table>
-</div>
+</body>
+</html>
 
-<?php require_once 'footer.php'; ?>
+

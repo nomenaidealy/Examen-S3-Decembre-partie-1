@@ -21,7 +21,7 @@ class ColisController {
         $colis = $colisModel->getListColis();
 
         $this->app->render('colis', [
-            'colis' => $colis
+            'data' => $colis
         ]);
     }
 
@@ -29,7 +29,7 @@ class ColisController {
     // AFFICHER FORMULAIRE AJOUT
     // =============================
     public function afficherFormulaireAjout() {
-        $this->app->render('formColis.php');
+        $this->app->render('formColis');
     }
 
     // =============================
@@ -39,10 +39,6 @@ class ColisController {
         $description = $this->app->request()->data->description;
         $poids = $this->app->request()->data->poids;
 
-        if (empty($description) || empty($poids)) {
-            $this->app->redirect('/colis/ajout');
-            return;
-        }
 
         $colisModel = new ColisModel($this->app->db());
         $colisModel->insertColis($description, $poids);

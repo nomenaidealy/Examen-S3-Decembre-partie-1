@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="colis/ajout" method = "POST">
+    <form action="/colis/ajout" method = "POST">
         <label for="description">Description</label>
         <input type="text" name = "description" >
         <label for="poids">Poids</label>

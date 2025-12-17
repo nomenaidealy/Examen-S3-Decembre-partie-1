@@ -10,12 +10,12 @@ class LivraisonModel {
     public function __construct($db) {
         $this->db = $db;
     }
-    /*public function getLivraisonS () {   
-        $stmt = $this->db->prepare("SELECT * FROM exam_vue_livraisons");
+    public function getLivraisonS () {   
+        $stmt = $this->db->prepare("SELECT * FROM el_v_livraison");
         $stmt->execute();
         $livraisons = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         return $livraisons;
-    }*/
+    }
 
     public function insertLivraison(
         $idColis,
