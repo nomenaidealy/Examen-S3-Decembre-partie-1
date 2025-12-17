@@ -17,8 +17,14 @@ class ColisModel {
         return $colis;
     }
 
-    
+    public function getListColisAvailable () {   
+        $stmt = $this->db->prepare("SELECT * FROM el_colis WHERE statut = 'non_livraison'");
+        $stmt->execute();
+        $colis = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $colis;
+    }
 
+    
     public function insertColis( $description,$poids) {
         $sql = "INSERT INTO el_colis (poids, description, statut)
                 VALUES (:poids, :description, :statut)";
@@ -52,5 +58,15 @@ class ColisModel {
         $result = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         return $result ? $result['prix'] : null;
+    }
+    
+    public function updateStatutColis(int $idColis, string $statut) {
+        $sql = "UPDATE el_colis SET statut = :statut WHERE id = :idColis";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            'statut' => $statut,
+            'idColis' => $idColis
+        ]);
     }
 }
