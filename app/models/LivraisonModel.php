@@ -84,6 +84,7 @@ class LivraisonModel {
             ':chiffreAffaire'   => (float)$chiffreAffaireColis,
             ':coutRevient'      => (float)$cout_revient
         ]);
+        $colisModel->updateStatutColis($idColis, 'livraison');
     }
 
 

@@ -27,7 +27,7 @@ class LivraisonController {
 
     public function afficherFormulaireAjout() {
         $colisModel = new ColisModel($this->app->db());
-        $colis = $colisModel->getListColis();
+        $colis = $colisModel->getListColisAvailable();
 
         $livreurModel = new LivreurModel($this->app->db());
         $livreurs = $livreurModel->getListLivreurs();
