@@ -14,7 +14,7 @@ use flight\net\Router;
 // This wraps all routes in the group with the SecurityHeadersMiddleware
 $router->group('', function(Router $router) use ($app) {
 
-    $router->get('/', [ LivraisonController::class, 'afficherLivraisons' ]);
+    //$router->get('/', [ LivraisonController::class, 'afficherLivraisons' ]);
 
     $router->get('/test', function() use ($app) {
         echo '<h1> Test de routages </h1>';
@@ -25,7 +25,8 @@ $router->group('', function(Router $router) use ($app) {
     });
 
     $router->group('/livraison', function() use ($router) {
-        $router->get('/ajouter', [ LivraisonController::class, 'afficherFormulaireAjout' ]);
+        $router->get('/form', [ LivraisonController::class, 'afficherFormulaireAjout' ]);
+        $router->post('/store', [ LivraisonController::class, 'insererLivraison' ]);
     });
 
 
@@ -36,13 +37,13 @@ $router->group('', function(Router $router) use ($app) {
     });
 
     
-    $router->group('/colis', function() use ($router, $app)  {
+    /*$router->group('/colis', function() use ($router, $app)  {
         $router->get('/form', function() use ($app) {
             $app->render('formColis', ['message'=> 'Direction vers colis.php']);
         });
         $router->post('/ajout', [ ColisController::class, 'insererColis' ]) ;
         $router->get();
-    });
+    });*/
 
     
 
