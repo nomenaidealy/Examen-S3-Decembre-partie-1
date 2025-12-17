@@ -50,7 +50,8 @@ INSERT INTO el_salaire_employe (idChauffeur, montant, date_debut, date_fin) VALU
 (1, 20000, '2025-01-01', '2025-06-30'),
 (1, 25000, '2025-07-01', NULL),
 (2, 18000, '2025-01-01', NULL),
-(3, 22000, '2025-01-01', NULL);
+(3, 22000, '2025-01-01', NULL),
+(4, 15000, '2025-01-01', NULL);
 
 -- =========================================
 -- TABLE : el_zones
@@ -77,10 +78,11 @@ CREATE TABLE el_colis (
 );
 
 INSERT INTO el_colis (poids, description, statut) VALUES
-(5, 'Documents', 'non livre'),
-(10, 'Vetements', 'livre'),
-(12, 'Materiel electronique', 'non livre'),
-(20, 'Meubles', 'livre');
+(5, 'Documents', 'livraison'),
+(10, 'Vetements', 'livraison'),
+(12, 'Materiel electronique', 'livraison'),
+(4,   'telephones',  'livraison'),
+(20, 'Meubles', 'non_livraison');
 
 -- =========================================
 -- TABLE : el_statut_livraison
@@ -109,6 +111,7 @@ CREATE TABLE el_chiffre_affaire (
 
 INSERT INTO el_chiffre_affaire (poids, prix, date_debut, date_fin) VALUES
 (5, 10000, '2025-01-01', '2025-06-30'),
+(1, 4000, '2025-01-01' , NULL),
 (5, 12000, '2025-07-01', NULL),
 (10, 15000, '2025-01-01', NULL),
 (20, 30000, '2025-01-01', NULL);
@@ -150,8 +153,8 @@ INSERT INTO el_livraison (
 ) VALUES
 (1, 'entrepotCentrale', 'Ivandry', '2025-07-10', 2, 1, 1, 5000, 25000, 12000, 30000),
 (2, 'entrepotCentrale', 'Ankorondrano', '2025-07-12', 2, 2, 2, 4000, 18000, 15000, 22000),
-(3, 'entrepotCentrale', 'Itaosy', '2025-07-14', 4, 3, 3, 6000, 22000, 12000, 28000),
-(4, 'entrepotCentrale', 'Talatamaty', '2025-07-15', 2, 4, 4, 7000, 22000, 30000, 29000);
+(3, 'entrepotCentrale', 'Itaosy', '2025-07-14', 4, 3, 3, 6000, 22000, 23000, 28000),
+(4, 'entrepotCentrale', 'Talatamaty', '2025-07-15', 2, 4, 4, 7000, 15000, 16000, 29000);
 
 
 -- =========================================
