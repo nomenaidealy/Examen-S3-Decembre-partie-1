@@ -188,3 +188,4 @@ JOIN el_vehicules v
     ON l.idVehicule = v.id
 JOIN el_livreurs ch
     ON l.idChauffeur = ch.id;
+
