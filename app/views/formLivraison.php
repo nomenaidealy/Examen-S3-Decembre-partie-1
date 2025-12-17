@@ -2,115 +2,176 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Créer une livraison</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #f4f6f8;
-        }
-
-        .container {
-            width: 420px;
-            margin: 50px auto;
-            background: #ffffff;
-            padding: 25px;
-            border-radius: 6px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: bold;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 18px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #222;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            font-size: 15px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #000;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer une Livraison - Livraisons Pro</title>
+    <link rel="stylesheet" href="/assets/header.css">
+    <link rel="stylesheet" href="/assets/formLivraison.css">
+    <link rel="stylesheet" href="/assets/footer.css">
 </head>
-
 <body>
+    <?php include 'header.php' ?>
 
-<div class="container">
-    <h2>Nouvelle livraison</h2>
+    <main class="form-container">
+        <div class="form-wrapper">
+            <div class="form-header">
+                <h1>Créer une Nouvelle Livraison</h1>
+                <p>Configurez les détails de la livraison</p>
+            </div>
 
-    <form action="/livraison/store" method="POST">
+            <form action="/livraison/store" method="POST" class="livraison-form">
+                
+                <!-- SECTION 1: Sélection du Colis -->
+                <div class="form-section">
+                    <h3 class="section-title">📦 Colis à Livrer</h3>
+                    <div class="form-group">
+                        <label for="idColis" class="form-label">
+                            <span class="label-icon">📋</span>
+                            Sélectionner un Colis
+                        </label>
+                        <select 
+                            id="idColis"
+                            name="idColis" 
+                            class="form-select"
+                            required
+                        >
+                            <option value="">-- Sélectionner un colis --</option>
+                            <?php foreach ($colis as $c): ?>
+                            <option value="<?= $c['id'] ?>">
+                            <?= htmlspecialchars($c['description']) ?> (<?= $c['poids'] ?> kg)
+                            </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
 
-        <!-- COLIS -->
-        <label>Colis</label>
-        <select name="idColis" required>
-            <option value="">-- Sélectionner un colis --</option>
-            <?php foreach ($colis as $c): ?>
-                <option value="<?= $c['id'] ?>">
-                    #<?= $c['id'] ?> - <?= htmlspecialchars($c['description']) ?> (<?= $c['poids'] ?> kg)
-                </option>
-            <?php endforeach; ?>
-        </select>
+                <!-- SECTION 2: Adresse de Destination -->
+                <div class="form-section">
+                    <h3 class="section-title">📍 Destination</h3>
+                    <div class="form-group">
+                        <label for="adresse_destination" class="form-label">
+                            <span class="label-icon">🏠</span>
+                            Adresse de Destination
+                        </label>
+                        <input 
+                            type="text" 
+                            id="adresse_destination"
+                            name="adresse_destination" 
+                            class="form-input"
+                            placeholder="Ex: 123 Rue de Paris, 75000 Paris"
+                            required
+                        >
+                        <small class="form-help">Entrez l'adresse complète de livraison</small>
+                    </div>
 
-        <!-- DESTINATION -->
-        <label>Adresse de destination</label>
-        <input type="text" name="adresse_destination" required>
+                    <div class="form-group">
+                        <label for="date_livraison" class="form-label">
+                            <span class="label-icon">📅</span>
+                            Date de Livraison
+                        </label>
+                        <input 
+                            type="date" 
+                            id="date_livraison"
+                            name="date_livraison" 
+                            class="form-input"
+                            required
+                        >
+                        <small class="form-help">Sélectionnez la date prévue de livraison</small>
+                    </div>
+                </div>
 
-        <!-- DATE -->
-        <label>Date de livraison</label>
-        <input type="date" name="date_livraison" required>
+                <!-- SECTION 3: Véhicule et Chauffeur -->
+                <div class="form-section">
+                    <h3 class="section-title">🚗 Véhicule & Chauffeur</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="idVehicule" class="form-label">
+                                <span class="label-icon">🚙</span>
+                                Véhicule
+                            </label>
+                            <select 
+                                id="idVehicule"
+                                name="idVehicule" 
+                                class="form-select"
+                                required
+                            >
+                                <option value="">-- Sélectionner un véhicule --</option>
+                                <?php foreach ($vehicules as $v): ?>
+                                <option value="<?= $v['id'] ?>">
+                                    <?= htmlspecialchars($v['numero_immatriculation']) ?>
+                                </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
 
-        <!-- VEHICULE -->
-        <label>Véhicule</label>
-        <select name="idVehicule" required>
-            <option value="">-- Sélectionner un véhicule --</option>
-            <?php foreach ($vehicules as $v): ?>
-                <option value="<?= $v['id'] ?>">
-                    <?= htmlspecialchars($v['numero_immatriculation']) ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
+                        <div class="form-group">
+                            <label for="idChauffeur" class="form-label">
+                                <span class="label-icon">👤</span>
+                                Chauffeur
+                            </label>
+                            <select 
+                                id="idChauffeur"
+                                name="idChauffeur" 
+                                class="form-select"
+                                required
+                            >
+                                <option value="">-- Sélectionner un chauffeur --</option>
+                                <?php foreach ($livreurs as $ch): ?>
+                                <option value="<?= $ch['id'] ?>">
+                                    <?= htmlspecialchars($ch['nom']) ?>
+                                </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>
 
-        <!-- CHAUFFEUR -->
-        <label>Chauffeur</label>
-        <select name="idChauffeur" required>
-            <option value="">-- Sélectionner un chauffeur --</option>
-            <?php foreach ($livreurs as $ch): ?>
-                <option value="<?= $ch['id'] ?>">
-                    <?= htmlspecialchars($ch['nom']) ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
+                <!-- SECTION 4: Coûts -->
+                <div class="form-section">
+                    <h3 class="section-title">💰 Coûts</h3>
+                    <div class="form-group">
+                        <label for="cout_vehicule" class="form-label">
+                            <span class="label-icon">💵</span>
+                            Coût d'Utilisation du Véhicule
+                        </label>
+                        <div class="input-group">
+                            <span class="currency-symbol">$</span>
+                            <input 
+                                type="number" 
+                                step="0.01" 
+                                id="cout_vehicule"
+                                name="cout_vehicule" 
+                                class="form-input"
+                                placeholder="0.00"
+                                required
+                            >
+                        </div>
+                        <small class="form-help">Entrez le coût en dollars</small>
+                    </div>
+                </div>
 
-        <!-- COUT VEHICULE -->
-        <label>Coût d'utilisation du véhicule</label>
-        <input type="number" step="0.01" name="cout_vehicule" required>
+                <!-- FORM ACTIONS -->
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">
+                        <span class="btn-icon">✅</span>
+                        Enregistrer la Livraison
+                    </button>
+                    <a href="/livraison/list" class="btn-cancel">
+                        <span class="btn-icon">❌</span>
+                        Annuler
+                    </a>
+                </div>
 
-        <button type="submit">Enregistrer la livraison</button>
-    </form>
-</div>
+                <!-- INFO MESSAGE -->
+                <div class="form-info">
+                    <div class="info-box">
+                        <h4>💡 Information</h4>
+                        <p>Tous les champs marqués avec <span class="required">*</span> sont obligatoires pour créer une livraison.</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
 
+    <?php include 'footer.php' ?>
 </body>
 </html>

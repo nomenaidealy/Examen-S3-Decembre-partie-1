@@ -14,6 +14,7 @@
     <main class="colis-container">
         <div class="colis-header">
             <h1>Liste des Colis</h1>
+            <a href="/colis/form">Ajouter colis</a>
             <p>Gérez et suivez tous vos colis</p>
         </div>
 

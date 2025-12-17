@@ -1,0 +1,375 @@
+/* ============================================
+   FORM STYLES
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf1 100%);
+    color: #333;
+    min-height: 100vh;
+}
+
+/* FORM CONTAINER */
+.form-container {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 0 20px;
+    min-height: calc(100vh - 400px);
+}
+
+/* FORM WRAPPER */
+.form-wrapper {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(15, 58, 95, 0.15);
+    overflow: hidden;
+    animation: slideUp 0.5s ease-out;
+}
+
+/* FORM HEADER */
+.form-header {
+    background: linear-gradient(135deg, #0f3a5f 0%, #1a5a7f 100%);
+    color: white;
+    padding: 40px;
+    text-align: center;
+    border-bottom: 4px solid #ffc107;
+}
+
+.form-header h1 {
+    font-size: 32px;
+    font-weight: 900;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-header p {
+    font-size: 14px;
+    color: #d0d0d0;
+    font-weight: 500;
+}
+
+/* FORM */
+.colis-form {
+    padding: 40px;
+}
+
+/* FORM GROUP */
+.form-group {
+    margin-bottom: 30px;
+    animation: slideUp 0.6s ease-out both;
+}
+
+.form-group:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.form-group:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+/* FORM LABEL */
+.form-label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #0f3a5f;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+}
+
+.label-icon {
+    margin-right: 8px;
+    font-size: 18px;
+}
+
+.form-label:hover {
+    color: #ffc107;
+}
+
+/* FORM INPUT */
+.form-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background: #f9fafb;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #ffc107;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(255, 193, 7, 0.1);
+    transform: translateY(-2px);
+}
+
+.form-input:hover {
+    border-color: #0f3a5f;
+    background: white;
+}
+
+.form-input::placeholder {
+    color: #999;
+    font-weight: 400;
+}
+
+/* FORM HELP TEXT */
+.form-help {
+    display: block;
+    margin-top: 6px;
+    font-size: 12px;
+    color: #999;
+    font-weight: 400;
+}
+
+/* FORM ACTIONS */
+.form-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+/* BUTTONS */
+.btn-submit,
+.btn-cancel {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.btn-submit {
+    background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
+    color: #0f3a5f;
+    box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
+}
+
+.btn-submit:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 193, 7, 0.4);
+    background: linear-gradient(135deg, #ffb300 0%, #ffa500 100%);
+}
+
+.btn-submit:active {
+    transform: translateY(-1px);
+}
+
+.btn-cancel {
+    background: #e0e0e0;
+    color: #666;
+    border: 2px solid #ccc;
+}
+
+.btn-cancel:hover {
+    background: #d0d0d0;
+    color: #333;
+    border-color: #999;
+    transform: translateY(-2px);
+}
+
+.btn-icon {
+    font-size: 18px;
+}
+
+/* FORM INFO */
+.form-info {
+    padding: 0 40px 30px 40px;
+    animation: slideUp 0.8s ease-out;
+}
+
+.info-box {
+    background: linear-gradient(135deg, #e3f2fd 0%, #f0f7ff 100%);
+    border-left: 4px solid #1976d2;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.info-box h4 {
+    color: #0f3a5f;
+    font-size: 14px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+}
+
+.info-box p {
+    color: #555;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.required {
+    color: #c62828;
+    font-weight: bold;
+}
+
+/* ANIMATIONS */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .form-container {
+        margin: 30px auto;
+    }
+
+    .form-header {
+        padding: 30px 20px;
+    }
+
+    .form-header h1 {
+        font-size: 24px;
+    }
+
+    .form-header p {
+        font-size: 13px;
+    }
+
+    .colis-form {
+        padding: 30px 20px;
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+    .form-actions {
+        gap: 12px;
+    }
+
+    .btn-submit,
+    .btn-cancel {
+        padding: 12px 20px;
+        font-size: 13px;
+    }
+
+    .form-info {
+        padding: 0 20px 20px 20px;
+    }
+
+    .info-box {
+        padding: 15px;
+    }
+
+    .info-box h4 {
+        font-size: 13px;
+    }
+
+    .info-box p {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-container {
+        margin: 20px auto;
+        padding: 0 15px;
+    }
+
+    .form-wrapper {
+        border-radius: 10px;
+    }
+
+    .form-header {
+        padding: 25px 15px;
+    }
+
+    .form-header h1 {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+
+    .form-header p {
+        font-size: 12px;
+    }
+
+    .colis-form {
+        padding: 20px 15px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-size: 14px;
+    }
+
+    .label-icon {
+        margin-right: 6px;
+        font-size: 16px;
+    }
+
+    .form-input {
+        padding: 12px 14px;
+        font-size: 13px;
+    }
+
+    .form-help {
+        font-size: 11px;
+    }
+
+    .form-actions {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
+
+    .btn-submit,
+    .btn-cancel {
+        padding: 12px 20px;
+        font-size: 12px;
+        width: 100%;
+    }
+
+    .form-info {
+        padding: 0 15px 15px 15px;
+    }
+
+    .info-box {
+        padding: 12px;
+    }
+
+    .info-box h4 {
+        font-size: 12px;
+        margin-bottom: 6px;
+    }
+
+    .info-box p {
+        font-size: 11px;
+    }
+}
