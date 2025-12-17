@@ -24,6 +24,10 @@ $router->group('', function(Router $router) use ($app) {
         echo '<h1>Hello world! Oh hey '.$name.'!</h1>';
     });
 
+    $router->group('/livraison', function() use ($router) {
+        $router->get('/ajouter', [ LivraisonController::class, 'afficherFormulaireAjout' ]);
+    });
+
 
     $router->group('/api', function() use ($router) {
         $router->get('/users', [ ApiExampleController::class, 'getUsers' ]);
