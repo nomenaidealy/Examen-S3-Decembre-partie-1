@@ -1,46 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Livraisons Pro - Service de Livraison Express</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/acceuil.css">
+    <link rel="stylesheet" href="/assets/footer.css">
+    <link rel="stylesheet" href="/assets/header.css">
 </head>
 <body>
-    <h1>Liste des livraisons</h1>
-    <table border="1">
-            <tr>
-                <th>Colis</th>
-                <th>poids</th>
-                <th>depart</th>
-                <th>destination</th>
-                <th>date_livraison</th>
-                <th>statut</th>
-                <th>vehicule</th>
-                <th>chauffeur</th>
-                <th>cout_vehicule</th>
-                <th>salaire</th>
-                <th>chiffre_affaire</th>
-                <th>cout_revient</th>
-            </tr>
-    
-             <?php foreach ($data as $l): ?>
-            <tr>
-                <td><?= htmlspecialchars($l['colis']) ?></td>
-                <td><?= $l['poids'] ?></td>
-                <td><?= $l['depart'] ?></td>
-                <td><?= htmlspecialchars($l['destination']) ?></td>
-                <td><?= htmlspecialchars($l['date_livraison']) ?></td>
-                <td><?= htmlspecialchars($l['statut']) ?></td>
-                <td><?= htmlspecialchars($l['vehicule']) ?></td>
-                <td><?= $l['chauffeur'] ?></td>
-                <td><?= htmlspecialchars($l['cout_vehicule']) ?></td>
-                <td><?= $l['salaire'] ?></td>
-                <td ><?= $l['chiffre_affaire'] ?></td>
-                <td><?= $l['cout_revient'] ?></td>
-            </tr>
-        <?php endforeach; ?>
-    </table>
+    <!-- NAVBAR -->
+   <?php include 'header.php' ?>
+
+    <!-- WELCOME SECTION -->
+    <section class="welcome-section">
+        <h2>Bienvenue dans notre entreprise</h2>
+        <p>Notre entreprise est toujours prête pour vous</p>
+        <p class="delivery-tagline">Livraison facile et rapide</p>
+    </section>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="promo-circle">
+            <div class="percent">35%</div>
+            <div class="text">OFF</div>
+        </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>EXPRESS <span class="highlight">DELIVERY SERVICE</span></h1>
+                <p>Solution de livraison rapide, fiable et abordable</p>
+                <p>Votre colis livré en toute sécurité et rapidité</p>
+                <div>
+                    <button class="btn-call">APPELEZ MAINTENANT</button>
+                    <button class="btn-call">EN SAVOIR PLUS</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="/assets/images/colis.jpg" alt="Colis de livraison">
+            </div>
+        </div>
+    </section>
+
+   
+
+ 
+ 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-

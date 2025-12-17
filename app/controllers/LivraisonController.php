@@ -20,7 +20,7 @@ class LivraisonController {
         $livraisonModel = new LivraisonModel($this->app->db());
         $livraisons = $livraisonModel->getLivraisonS();
 
-        $this->app->render('accueil.php', [
+        $this->app->render('livraison.php', [
             'data' => $livraisons
         ]);
     }

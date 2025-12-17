@@ -17,6 +17,8 @@ class ColisModel {
         return $colis;
     }
 
+    
+
     public function insertColis( $description,$poids) {
         $sql = "INSERT INTO el_colis (poids, description, statut)
                 VALUES (:poids, :description, :statut)";
