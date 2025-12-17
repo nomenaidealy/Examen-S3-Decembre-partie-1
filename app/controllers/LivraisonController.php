@@ -4,6 +4,9 @@ namespace app\controllers;
 
 use flight\Engine;
 use app\models\LivraisonModel;
+use app\models\ColisModel;
+use app\models\LivreurModel;
+use app\models\VehiculeModel;
 
 class LivraisonController {
 
@@ -23,8 +26,8 @@ class LivraisonController {
     }
 
     public function afficherFormulaireAjout() {
-        $coliseurModel = new ColisModel($this->app->db());
-        $colis = $coliseurModel->getListColis();
+        $colisModel = new ColisModel($this->app->db());
+        $colis = $colisModel->getListColis();
 
         $livreurModel = new LivreurModel($this->app->db());
         $livreurs = $livreurModel->getListLivreurs();
@@ -32,11 +35,12 @@ class LivraisonController {
         $vehiculeModel = new VehiculeModel($this->app->db());
         $vehicules = $vehiculeModel->getListVehicules();
 
-        $this->app->set('colis', $colis);
-        $this->app->set('livreurs', $livreurs);
-        $this->app->set('vehicules', $vehicules);
-
-        $this->app->render('formLivraison.php');
+        $this->app->render('formLivraison.php', [
+            'colis'     => $colis,
+            'livreurs'  => $livreurs,
+            'vehicules' => $vehicules
+        ]);
     }
+
 
 }

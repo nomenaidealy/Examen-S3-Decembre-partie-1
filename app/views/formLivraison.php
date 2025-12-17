@@ -97,7 +97,7 @@
         <label>Chauffeur</label>
         <select name="idChauffeur" required>
             <option value="">-- Sélectionner un chauffeur --</option>
-            <?php foreach ($chauffeurs as $ch): ?>
+            <?php foreach ($livreurs as $ch): ?>
                 <option value="<?= $ch['id'] ?>">
                     <?= htmlspecialchars($ch['nom']) ?>
                 </option>
