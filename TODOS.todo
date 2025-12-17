@@ -1,4 +1,4 @@
-[] CREATION DE LA BASE :
+[] CREATION DE LA BASE :  idealy 
     - [] vehicules :
         - id
         - numéro d'immatriculation
@@ -51,7 +51,7 @@
 
     
 [] Gestion de livraison :
-    - [] Création de colis :
+    - [] Création de colis :  idealy
         - description
         - poids
 
@@ -74,7 +74,7 @@
         routage :
             - lien vers la page d'insertion --colis/edit
 
-    - [] Creation de livraison :
+    - [] Creation de livraison :    Ayman
         - dropdown de colis
         - addresse de destination
         - date
@@ -88,7 +88,7 @@
             - vehicule
         
         view :
-            - formulaire d'insertion de livraison
+            - formulaire d'insertion de livraison    
         
         integration php :
             modele :
