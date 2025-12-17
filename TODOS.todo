@@ -1,66 +1,117 @@
-[x] création de la base de donnée : by Idealy
-    (ok) - vehicules :
+[] CREATION DE LA BASE :
+    - [] vehicules :
         - id
         - numéro d'immatriculation
 
-    (ok) - livreurs :
+    - [] livreurs (employee) :
+        - id
+        - nom
+
+    - [] salaire employee :
+        - id
+        - idChauffeur
+        - montant
+        - date de debut
+        - date de fin
+
+    - [] zones :
         - id 
         - nom
 
-    (ok) - zone de livraison :
-        - id 
-        - nom
-
-    (ok) - addresse :
-        - id
-        - addresse
-
-    (ok) - status de livraison :
-        - id
-        - libele (attente, livré, annulé)
-
-    (ok) - colis :
+    - [] colis :
         - id
         - poids
-        - prixParKilos
+        - description
+        - statut (livré ou pas)
+    
+    - [] statut de livraison :
+        - id 
         - libele
 
-    (ok) - livraison :
+    - [] chiffre d'affaire :
         - id
-        - idColis
-        - idLivreur
-        - idVehicule
-        - idAdresseDepart
-        - idADresseDestination
-        - dateLivraison
-        - idStatus
-        - coutRevient
+        - poids
+        - prix
+        - date debut
+        - date de fin
+    
+    - [] livraison :
+        - id
+        - colis (FK colis)
+        - addresse de départ 
+        - addresse de destination 
+        - date de livraison
+        - statut (FK statut de livraison)
+        - vehicule (FK vehicule)
+        - chauffeur (FK chauffeur)
+        - coût d'utilisation du vehicule
+        - salaire chauffeur (à select dans la base salaire employee par rapport à la date de livraisono)
+        - chiffre d'affaire (à calculer par rapport à labase chiffre d'affaire)
+        - coût de revient (à calculer)
 
-[] Page d'accueil :
-    fonctionnalité :
-        - Liste de livraison avec leur état
-        - Changement d'état (de base on met en attente) :
-            - livré
-            - annulé
-            - attente
-        - Lien création de livraison
-    base :
-        - livraison
-    controller :
-        - LivraisonController
-    model :
-        - Livraison
-    fonction :
-        - getAll
-        - mettre en attente ---update la colonne status
-        - annuler           ---update la colonne status
-        - livré             ---update la colonne status
-    view :
-        - accueiil.php 
-            - Tableau des livraison avec status
-                liste deroulante
-        - header.php
-        - footer.php
-    routage :
-        - accueil :
-            - updateStatus/@idLivraison&&@idNewStatus
+    
+[] Gestion de livraison :
+    - [] Création de colis :
+        - description
+        - poids
+
+        base :
+            - colis
+
+        view : 
+            - formulaire d'insertion de colis (desciption et poids)
+
+        integration php :
+            model :
+                - ColisModel
+
+            controller :
+                - ColisController
+
+        function :
+            - fonction d'insertion dans la base (model, controller)
+
+        routage :
+            - lien vers la page d'insertion --colis/edit
+
+    - [] Creation de livraison :
+        - dropdown de colis
+        - addresse de destination
+        - date
+        - dropdown vehicules
+        - dropdown chauffeur
+        - coût d'utilisation de voiture
+
+        base :
+            - livraison
+            - chauffeur
+            - vehicule
+        
+        view :
+            - formulaire d'insertion de livraison
+        
+        integration php :
+            modele :
+                - LivraisonModel
+                - ChauffeurModel
+                - VehiculeModel
+            controller :
+                - LivraisonController
+        
+        function :
+            - insertion de livraison
+            - calcul de chiffre d'affaire
+            - calcul du salaire de l'employé
+            - calcul du coût de revient
+        
+
+    - [] Statut de livraison (liste de livraison) :
+        - de base les livraisons sont en attente
+        - mettre en attente
+        - annuler la livraison
+        - lancer la livraison
+
+    - [] Bénéfice par période :
+        - filtre par mois jour annee
+        
+    
