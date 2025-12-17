@@ -110,8 +110,29 @@
         - mettre en attente
         - annuler la livraison
         - lancer la livraison
+            
+        base :
+            - livraison
+        
+        view :
+            - liste de livraison avec bouton modifier  ---- livraison/editStatus
+
+        integration php : 
+            -
+            model :
+                - LivraisonModel
+        function: 
+            - update  status 
 
     - [] Bénéfice par période :
         - filtre par mois jour annee
-        
-    
+
+        base : 
+            -livraison 
+        view :
+            - tableau (date , benefice) total(default)
+            -formulaire filtrage [jour , mois , annee]
+            - tableau (date , benefice) filtre par date 
+        fonction : 
+            -calcul benefice par filtre 
+
