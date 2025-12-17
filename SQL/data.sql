@@ -1,158 +1,159 @@
 -- =========================================
--- Base de données : exam_colis_express
+-- FICHIER : entreprise_livraison.sql
 -- =========================================
 
-CREATE DATABASE IF NOT EXISTS exam_colis_express;
-USE exam_colis_express;
+DROP DATABASE IF EXISTS entreprise_livraison;
+CREATE DATABASE entreprise_livraison;
+USE entreprise_livraison;
 
 -- =========================================
--- 1. Table vehicule
+-- TABLE : el_vehicules
 -- =========================================
-CREATE TABLE exam_vehicule (
+CREATE TABLE el_vehicules (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    numero_immatriculation VARCHAR(20) NOT NULL,
-    type VARCHAR(50)
+    numero_immatriculation VARCHAR(50) NOT NULL UNIQUE
 );
 
-INSERT INTO exam_vehicule (numero_immatriculation, type) VALUES
-('AB123CD', 'Camion'),
-('XY987ZT', 'Van'),
-('ZZ999YY', 'Camion');
+INSERT INTO el_vehicules (numero_immatriculation) VALUES
+('1234-TAA'),
+('5678-TBB'),
+('9012-TCC'),
+('3456-TDD');
 
 -- =========================================
--- 2. Table livreur
+-- TABLE : el_livreurs
 -- =========================================
-CREATE TABLE exam_livreur (
+CREATE TABLE el_livreurs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nom VARCHAR(100) NOT NULL
 );
 
-INSERT INTO exam_livreur (nom) VALUES
-('John Doe'),
-('Jane Smith'),
-('Alice Dupont');
+INSERT INTO el_livreurs (nom) VALUES
+('Jean'),
+('Paul'),
+('Marc'),
+('Luc');
 
 -- =========================================
--- 3. Table adresse
+-- TABLE : el_salaire_employe
 -- =========================================
-CREATE TABLE exam_adresse (
+CREATE TABLE el_salaire_employe (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    adresse VARCHAR(255) NOT NULL
+    idChauffeur INT NOT NULL,
+    montant DECIMAL(10,2) NOT NULL,
+    date_debut DATE NOT NULL,
+    date_fin DATE,
+    FOREIGN KEY (idChauffeur) REFERENCES el_livreurs(id)
 );
 
-INSERT INTO exam_adresse (adresse) VALUES
-('Entrepot Central'),
-('123 Rue Principale'),
-('456 Avenue du Parc'),
-('789 Boulevard de la Ville');
+INSERT INTO el_salaire_employe (idChauffeur, montant, date_debut, date_fin) VALUES
+(1, 20000, '2025-01-01', '2025-06-30'),
+(1, 25000, '2025-07-01', NULL),
+(2, 18000, '2025-01-01', NULL),
+(3, 22000, '2025-01-01', NULL);
 
 -- =========================================
--- 4. Table status_livraison
+-- TABLE : el_zones
 -- =========================================
-CREATE TABLE exam_status_livraison (
+CREATE TABLE el_zones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(100) NOT NULL
+);
+
+INSERT INTO el_zones (nom) VALUES
+('Centre-ville'),
+('Banlieue'),
+('Zone-industrielle'),
+('Peripherie');
+
+-- =========================================
+-- TABLE : el_colis
+-- =========================================
+CREATE TABLE el_colis (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    poids DECIMAL(10,2) NOT NULL,
+    description VARCHAR(255),
+    statut VARCHAR(20) NOT NULL
+);
+
+INSERT INTO el_colis (poids, description, statut) VALUES
+(5, 'Documents', 'non livre'),
+(10, 'Vetements', 'livre'),
+(12, 'Materiel electronique', 'non livre'),
+(20, 'Meubles', 'livre');
+
+-- =========================================
+-- TABLE : el_statut_livraison
+-- =========================================
+CREATE TABLE el_statut_livraison (
     id INT AUTO_INCREMENT PRIMARY KEY,
     libelle VARCHAR(50) NOT NULL
 );
 
-INSERT INTO exam_status_livraison (libelle) VALUES
-('en attente'),
-('livré'),
-('annulé');
+INSERT INTO el_statut_livraison (libelle) VALUES
+('En attente'),
+('Livre'),
+('Annule'),
+('En cours');
 
 -- =========================================
--- 5. Table colis
+-- TABLE : el_chiffre_affaire
 -- =========================================
-CREATE TABLE exam_colis (
+CREATE TABLE el_chiffre_affaire (
     id INT AUTO_INCREMENT PRIMARY KEY,
     poids DECIMAL(10,2) NOT NULL,
-    prix_par_kilos DECIMAL(10,2) NOT NULL,
-    description VARCHAR(255)
+    prix DECIMAL(10,2) NOT NULL,
+    date_debut DATE NOT NULL,
+    date_fin DATE
 );
 
-INSERT INTO exam_colis (poids, prix_par_kilos, description) VALUES
-(10, 5, 'Electronique'),
-(20, 2.5, 'Livres'),
-(15, 3, 'Vêtements');
+INSERT INTO el_chiffre_affaire (poids, prix, date_debut, date_fin) VALUES
+(5, 10000, '2025-01-01', '2025-06-30'),
+(5, 12000, '2025-07-01', NULL),
+(10, 15000, '2025-01-01', NULL),
+(20, 30000, '2025-01-01', NULL);
 
 -- =========================================
--- 6. Table livraison
+-- TABLE : el_livraison
 -- =========================================
-CREATE TABLE exam_livraison (
+CREATE TABLE el_livraison (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    id_colis INT NOT NULL,
-    id_livreur INT NOT NULL,
-    id_vehicule INT NOT NULL,
-    id_adresse_depart INT NOT NULL,
-    id_adresse_destination INT NOT NULL,
+    idColis INT NOT NULL,
+    adresse_depart VARCHAR(255),
+    adresse_destination VARCHAR(255),
     date_livraison DATE NOT NULL,
-    id_status INT NOT NULL,
-    salaire_chauffeur DECIMAL(10,2) NOT NULL,
+    idStatut INT NOT NULL,
+    idVehicule INT NOT NULL,
+    idChauffeur INT NOT NULL,
     cout_vehicule DECIMAL(10,2) NOT NULL,
-    cout_revient DECIMAL(10,2) NOT NULL,
-    chiffre_affaire DECIMAL(10,2) NOT NULL,
-
-    CONSTRAINT fk_livraison_colis
-        FOREIGN KEY (id_colis) REFERENCES exam_colis(id),
-    CONSTRAINT fk_livraison_livreur
-        FOREIGN KEY (id_livreur) REFERENCES exam_livreur(id),
-    CONSTRAINT fk_livraison_vehicule
-        FOREIGN KEY (id_vehicule) REFERENCES exam_vehicule(id),
-    CONSTRAINT fk_livraison_adresse_depart
-        FOREIGN KEY (id_adresse_depart) REFERENCES exam_adresse(id),
-    CONSTRAINT fk_livraison_adresse_destination
-        FOREIGN KEY (id_adresse_destination) REFERENCES exam_adresse(id),
-    CONSTRAINT fk_livraison_status
-        FOREIGN KEY (id_status) REFERENCES exam_status_livraison(id)
+    salaire_chauffeur DECIMAL(10,2),
+    chiffre_affaire DECIMAL(10,2),
+    cout_revient DECIMAL(10,2),
+    FOREIGN KEY (idColis) REFERENCES el_colis(id),
+    FOREIGN KEY (idStatut) REFERENCES el_statut_livraison(id),
+    FOREIGN KEY (idVehicule) REFERENCES el_vehicules(id),
+    FOREIGN KEY (idChauffeur) REFERENCES el_livreurs(id)
 );
 
--- =========================================
--- 7. Insertion des livraisons
--- =========================================
-INSERT INTO exam_livraison 
-(id_colis, id_livreur, id_vehicule, id_adresse_depart, id_adresse_destination,
- date_livraison, id_status, salaire_chauffeur, cout_vehicule, cout_revient, chiffre_affaire)
-VALUES
-(1, 1, 1, 1, 2, '2025-12-16', 1, 40, 50, 90, 10*5),
-(2, 2, 2, 1, 3, '2025-12-16', 1, 50, 30, 80, 20*2.5),
-(3, 3, 3, 1, 4, '2025-12-16', 1, 45, 45, 90, 15*3);
+INSERT INTO el_livraison (
+    idColis,
+    adresse_depart,
+    adresse_destination,
+    date_livraison,
+    idStatut,
+    idVehicule,
+    idChauffeur,
+    cout_vehicule,
+    salaire_chauffeur,
+    chiffre_affaire,
+    cout_revient
+) VALUES
+(1, 'entrepotCentrale', 'Ivandry', '2025-07-10', 2, 1, 1, 5000, 25000, 12000, 30000),
+(2, 'entrepotCentrale', 'Ankorondrano', '2025-07-12', 2, 2, 2, 4000, 18000, 15000, 22000),
+(3, 'entrepotCentrale', 'Itaosy', '2025-07-14', 4, 3, 3, 6000, 22000, 12000, 28000),
+(4, 'entrepotCentrale', 'Talatamaty', '2025-07-15', 2, 4, 4, 7000, 22000, 30000, 29000);
+
 
 -- =========================================
--- 8. Table zone_livraison (optionnelle)
+-- FIN DU FICHIER
 -- =========================================
-CREATE TABLE exam_zone_livraison (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    nom VARCHAR(100) NOT NULL
-);
-
-INSERT INTO exam_zone_livraison (nom) VALUES
-('Zone Nord'),
-('Zone Sud'),
-('Zone Est'),
-('Zone Ouest');
-
--- =========================================
--- 9. Vue des livraisons
--- =========================================
-CREATE OR REPLACE VIEW exam_vue_livraisons AS
-SELECT 
-    l.id,
-    c.description AS colis,
-    c.poids,
-    c.prix_par_kilos,
-    lr.nom AS livreur,
-    v.numero_immatriculation AS vehicule,
-    a_dep.adresse AS adresse_depart,
-    a_dest.adresse AS adresse_destination,
-    l.date_livraison,
-    s.libelle AS statut,
-    l.salaire_chauffeur,
-    l.cout_vehicule,
-    l.cout_revient,
-    l.chiffre_affaire
-FROM exam_livraison l
-JOIN exam_colis c ON l.id_colis = c.id
-JOIN exam_livreur lr ON l.id_livreur = lr.id
-JOIN exam_vehicule v ON l.id_vehicule = v.id
-JOIN exam_adresse a_dep ON l.id_adresse_depart = a_dep.id
-JOIN exam_adresse a_dest ON l.id_adresse_destination = a_dest.id
-JOIN exam_status_livraison s ON l.id_status = s.id;
