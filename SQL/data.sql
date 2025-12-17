@@ -166,19 +166,20 @@ INSERT INTO el_livraison (
 -- =========================================
 -- VUE de livraison 
 -- =========================================
-CREATE OR REPLACE VIEW el_v_livraison AS SELECT 
-    c.description,
-    c.poids,
-    l.adresse_depart,
-    l.adresse_destination,
-    l.date_livraison,
-    s.libelle,
-    v.numero_immatriculation,
-    ch.nom,
-    l.cout_vehicule,
-    l.salaire_chauffeur,
-    l.chiffre_affaire,
-    l.cout_revient
+CREATE OR REPLACE VIEW el_v_livraison AS
+SELECT 
+    c.description AS colis,
+    c.poids AS poids,
+    l.adresse_depart AS depart,
+    l.adresse_destination AS destination,
+    l.date_livraison AS date_livraison,
+    s.libelle AS statut,
+    v.numero_immatriculation AS vehicule,
+    ch.nom AS chauffeur,
+    l.cout_vehicule AS cout_vehicule,
+    l.salaire_chauffeur AS salaire,
+    l.chiffre_affaire AS chiffre_affaire,
+    l.cout_revient AS cout_revient
 FROM el_livraison l
 JOIN el_colis c 
     ON l.idColis = c.id
@@ -188,5 +189,4 @@ JOIN el_vehicules v
     ON l.idVehicule = v.id
 JOIN el_livreurs ch
     ON l.idChauffeur = ch.id;
-
 
