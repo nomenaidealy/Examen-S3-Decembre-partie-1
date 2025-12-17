@@ -1,4 +1,4 @@
-[] CREATION DE LA BASE :  idealy 
+[] CREATION DE LA BASE :                         QUI : idealy (10 mn)                             STATUS  = OK
     - [] vehicules :
         - id
         - numéro d'immatriculation
@@ -51,7 +51,8 @@
 
     
 [] Gestion de livraison :
-    - [] Création de colis :  idealy
+    - [] Création de colis :                                QUI: idealy                                            STATUS : EN COURS 
+        
         - description
         - poids
 

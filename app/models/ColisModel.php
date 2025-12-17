@@ -17,4 +17,16 @@ class ColisModel {
         return $colis;
     }
 
+    public function insertColis($description, $poids) {
+        $sql = "INSERT INTO el_colis (poids, description, statut)
+                VALUES (:poids, :description, :statut)";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':poids', $poids, \PDO::PARAM_STR);
+        $stmt->bindValue(':description', $description, \PDO::PARAM_STR);
+        $stmt->bindValue(':statut', 'non_livraison', \PDO::PARAM_STR);
+
+        $stmt->execute();
+    }
+
 }

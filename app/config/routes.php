@@ -34,5 +34,25 @@ $router->group('', function(Router $router) use ($app) {
         $router->get('/users/@id:[0-9]', [ ApiExampleController::class, 'getUser' ]);
         $router->post('/users/@id:[0-9]', [ ApiExampleController::class, 'updateUser' ]);
     });
+
     
+    $router->group('/colis', function() use ($router, $app)  {
+        $router->get('/form', function() use ($app) {
+            $app->render('formColis', ['message'=> 'Direction vers colis.php']);
+        });
+        $router->post('/ajout', [ ColisController::class, 'insererColis' ]) ;
+        $router->get();
+    });
+
+    
+
+    $app->get('/colis/ajout', function () use ($app) {
+        (new ColisController($app))->afficherFormulaireAjout();
+    });
+
+    $app->post('/colis/ajout', function () use ($app) {
+        (new ColisController($app))->insererColis();
+    });
+
+        
 }, [ SecurityHeadersMiddleware::class ]);
