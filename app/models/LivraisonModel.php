@@ -11,7 +11,7 @@ class LivraisonModel {
         $this->db = $db;
     }
     public function getLivraisonS () {   
-        $stmt = $this->db->prepare("SELECT * FROM vue_livraisons");
+        $stmt = $this->db->prepare("SELECT * FROM exam_vue_livraisons");
         $stmt->execute();
         $livraisons = $stmt->fetchAll(\PDO::FETCH_ASSOC);
         return $livraisons;
