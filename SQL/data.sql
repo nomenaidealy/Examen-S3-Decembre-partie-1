@@ -168,6 +168,7 @@ INSERT INTO el_livraison (
 -- =========================================
 CREATE OR REPLACE VIEW el_v_livraison AS
 SELECT 
+    l.id AS id_livraison,
     c.description AS colis,
     c.poids AS poids,
     l.adresse_depart AS depart,

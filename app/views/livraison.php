@@ -38,6 +38,7 @@
                         <th>Salaire</th>
                         <th>CA</th>
                         <th>Coût Revient</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -71,9 +72,16 @@
                         <td data-label="Coût Revient" class="cost-return-cell">
                             <span class="cost-return-value">$<?= $l['cout_revient'] ?></span>
                         </td>
-                        
+                        <td data-label="Actions" class="actions-cell">
+                            <a href="/livraison/formStatut/<?= $l['id_livraison'] ?>" 
+                            class="btn-change-status" 
+                            title="Changer le statut">
+                                <i class="bi bi-arrow-repeat"></i> Changer statut
+                            </a>
+                        </td>             
                     </tr>
                     <?php endforeach; ?>
+
                 </tbody>
             </table>
         </div>
