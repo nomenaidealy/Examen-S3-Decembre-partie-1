@@ -3,12 +3,12 @@ $title = 'Liste des livraisons';
 require_once 'header.php';
 ?>
 
-<h2 class="mb-4 text-secondary">Liste des livraisons</h2>
+<h2 >Liste des livraisons</h2>
 
-<div class="table-responsive shadow-sm rounded">
-    <table class="table table-striped table-hover align-middle mb-0">
-        <thead class="table-light">
-            <tr class="text-uppercase small text-secondary">
+<div >
+    <table border="1" >
+        <thead >
+            <tr >
                 <th>Colis</th>
                 <th>Poids</th>
                 <th>Prix/kg</th>
@@ -39,7 +39,7 @@ require_once 'header.php';
                 <td><?= $l['salaire_chauffeur'] ?></td>
                 <td><?= $l['cout_vehicule'] ?></td>
                 <td><?= $l['cout_revient'] ?></td>
-                <td class="text-success fw-semibold"><?= $l['chiffre_affaire'] ?></td>
+                <td ><?= $l['chiffre_affaire'] ?></td>
             </tr>
         <?php endforeach; ?>
         </tbody>
