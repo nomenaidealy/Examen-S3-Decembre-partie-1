@@ -160,3 +160,31 @@ INSERT INTO el_livraison (
 -- =========================================
 -- FIN DU FICHIER
 -- =========================================
+
+
+
+-- =========================================
+-- VUE de livraison 
+-- =========================================
+CREATE OR REPLACE VIEW el_v_livraison AS SELECT 
+    c.description,
+    c.poids,
+    l.adresse_depart,
+    l.adresse_destination,
+    l.date_livraison,
+    s.libelle,
+    v.numero_immatriculation,
+    ch.nom,
+    l.cout_vehicule,
+    l.salaire_chauffeur,
+    l.chiffre_affaire,
+    l.cout_revient
+FROM el_livraison l
+JOIN el_colis c 
+    ON l.idColis = c.id
+JOIN el_statut_livraison s
+    ON l.idStatut = s.id
+JOIN el_vehicules v
+    ON l.idVehicule = v.id
+JOIN el_livreurs ch
+    ON l.idChauffeur = ch.id;
