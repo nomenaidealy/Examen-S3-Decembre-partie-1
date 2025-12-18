@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="/assets/header.css">
     <link rel="stylesheet" href="/assets/status.css">
     <link rel="stylesheet" href="/assets/footer.css">
+    <link rel="stylesheet" href="/assets/bootstrap-icons/bootstrap-icons.css">
+
 </head>
 <body>
 <?php include 'header.php' ?>
