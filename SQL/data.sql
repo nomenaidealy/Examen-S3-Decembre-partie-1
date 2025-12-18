@@ -190,3 +190,17 @@ JOIN el_vehicules v
 JOIN el_livreurs ch
     ON l.idChauffeur = ch.id;
 
+
+
+
+CREATE OR REPLACE VIEW v_date_livraison AS 
+select YEAR(date_livraison) as annee, 
+MONTH(date_livraison) as mois ,  
+DAY(date_livraison) as jour , cout_revient, chiffre_affaire  
+from el_livraison ;
+
+
+
+
+
+

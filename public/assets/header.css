@@ -101,3 +101,10 @@ nav {
         display: block;
     }
 }
+.navbar-brand img {
+    height: 45px;
+    width: auto;
+    border-radius: 5px;
+    object-fit: cover;
+    object-position: left;
+}

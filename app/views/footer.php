@@ -18,7 +18,7 @@
             <h4>Services</h4>
             <ul class="footer-links">
                 <li><a href="/colis/list">Nos Colis</a></li>
-                <li><a href="#">Livraisons Express</a></li>
+                <li><a href="/livraison/list">Livraisons Express</a></li>
                 <li><a href="#">Suivi en Temps Réel</a></li>
                 <li><a href="#">Tarifs</a></li>
             </ul>

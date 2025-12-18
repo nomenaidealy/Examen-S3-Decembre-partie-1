@@ -3,6 +3,7 @@
 use app\controllers\ApiExampleController;
 use app\controllers\LivraisonController;
 use app\controllers\ColisController;
+use app\controllers\BeneficeController;
 use app\middlewares\SecurityHeadersMiddleware;
 use flight\Engine;
 use flight\net\Router;
@@ -48,6 +49,33 @@ $router->group('', function(Router $router) use ($app) {
         $router->post('/ajout', [ ColisController::class, 'insererColis' ]) ;
         $router->get('/list', [ ColisController::class, 'afficherColis']);
     });
+
+  
+$router->group('/benefice', function() use ($router, $app) {
+
+    
+    $router->get('/form', function() use ($app) {
+        $app->render('formBenefice', ['message' => 'Direction vers benefice.php', 'resultat' => null]);
+    });
+
+   
+    $router->post('/filtre', function() use ($app) {
+        $jour  = $app->request()->data->jour !== '' ? (int)$app->request()->data->jour : null;
+        $mois  = $app->request()->data->mois !== '' ? (int)$app->request()->data->mois : null;
+        $annee = $app->request()->data->annee !== '' ? (int)$app->request()->data->annee : null;
+
+        $controller = new \app\controllers\BeneficeController($app);
+        $benefice = $controller->calculBenefice($jour, $mois, $annee);
+
+        $app->render('formBenefice', [
+            'message' => 'Résultat du filtre',
+            'resultat' => $benefice
+        ]);
+    });
+});
+
+
+
 
     
 
