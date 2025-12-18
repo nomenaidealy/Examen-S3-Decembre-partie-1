@@ -14,10 +14,19 @@ class BeneficeController {
     }
 
     
-public function calculBenefice($jour = null, $mois = null, $annee = null) {
-    $beneficeModel = new BeneficeModel($this->app->db());
-    return $beneficeModel->sommeBenefice($jour, $mois, $annee);
-}
+    public function calculBenefice() {
+        $jour  = $this->app->request()->data->jour !== '' ? (int)$this->app->request()->data->jour : null;
+        $mois  = $this->app->request()->data->mois !== '' ? (int)$this->app->request()->data->mois : null;
+        $annee = $this->app->request()->data->annee !== '' ? (int)$this->app->request()->data->annee : null;
+
+        $beneficeModel = new BeneficeModel($this->app->db());
+        $benefice = $beneficeModel->sommeBenefice($jour, $mois, $annee);
+
+        $this->app->render('formBenefice', [
+            'message' => 'Résultat du filtre',
+            'resultat' => $benefice
+        ]);
+    }
 
 
 

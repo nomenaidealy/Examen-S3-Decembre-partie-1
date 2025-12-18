@@ -20,13 +20,15 @@ $router->group('', function(Router $router) use ($app) {
         $app->render('accueil', ['message' => 'Bienvenue']);
     });
 
-    $router->get('/test', function() use ($app) {
-        echo '<h1> Test de routages </h1>';
-    });
+    /*
+        $router->get('/test', function() use ($app) {
+            echo '<h1> Test de routages </h1>';
+        });
 
-    $router->get('/hello-world/@name', function($name) {
-        echo '<h1>Hello world! Oh hey '.$name.'!</h1>';
-    });
+        $router->get('/hello-world/@name', function($name) {
+            echo '<h1>Hello world! Oh hey '.$name.'!</h1>';
+        });
+    */
 
     $router->group('/livraison', function() use ($router) {
         $router->get('/form', [ LivraisonController::class, 'afficherFormulaireAjout' ]);
@@ -53,34 +55,11 @@ $router->group('', function(Router $router) use ($app) {
     });
 
   
-$router->group('/benefice', function() use ($router, $app) {
-
-    
-    $router->get('/form', function() use ($app) {
-        $app->render('formBenefice', ['message' => 'Direction vers benefice.php', 'resultat' => null]);
+    $router->group('/benefice', function() use ($router, $app) {      
+        $router->get('/form', function() use ($app) {
+            $app->render('formBenefice', ['message' => 'Direction vers benefice.php', 'resultat' => null]);
+        });
+        $router->post('/filtre', [ BeneficeController::class, 'calculBenefice']);
     });
-
-   
-    $router->post('/filtre', function() use ($app) {
-        $jour  = $app->request()->data->jour !== '' ? (int)$app->request()->data->jour : null;
-        $mois  = $app->request()->data->mois !== '' ? (int)$app->request()->data->mois : null;
-        $annee = $app->request()->data->annee !== '' ? (int)$app->request()->data->annee : null;
-
-        $controller = new \app\controllers\BeneficeController($app);
-        $benefice = $controller->calculBenefice($jour, $mois, $annee);
-
-        $app->render('formBenefice', [
-            'message' => 'Résultat du filtre',
-            'resultat' => $benefice
-        ]);
-    });
-});
-
-
-
-
-    
-
-  
-        
+      
 }, [ SecurityHeadersMiddleware::class ]);
