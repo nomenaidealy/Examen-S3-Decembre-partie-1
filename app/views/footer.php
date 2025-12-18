@@ -1,15 +1,26 @@
-
 <footer class="footer">
     <div class="footer-container">
+
         <!-- Section Info -->
         <div class="footer-section">
             <h3>Livraisons Pro</h3>
-            <p>Votre partenaire de confiance pour la livraison express et sécurisée de vos colis.</p>
+            <p>
+                Votre partenaire de confiance pour la livraison express et sécurisée de vos colis.
+            </p>
+
             <div class="social-links">
-                <a href="#" title="Facebook" class="social-icon">f</a>
-                <a href="#" title="Twitter" class="social-icon">𝕏</a>
-                <a href="#" title="Instagram" class="social-icon">📷</a>
-                <a href="#" title="LinkedIn" class="social-icon">in</a>
+                <a href="#" title="Facebook" class="social-icon">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="#" title="X (Twitter)" class="social-icon">
+                    <i class="bi bi-twitter-x"></i>
+                </a>
+                <a href="#" title="Instagram" class="social-icon">
+                    <i class="bi bi-instagram"></i>
+                </a>
+                <a href="#" title="LinkedIn" class="social-icon">
+                    <i class="bi bi-linkedin"></i>
+                </a>
             </div>
         </div>
 
@@ -28,11 +39,20 @@
         <div class="footer-section">
             <h4>Contact</h4>
             <ul class="footer-contact">
-                <li>📞 <a href="tel:804-790-3688">804-790-3688</a></li>
-                <li>📧 <a href="mailto:info@livraisonspro.com">info@livraisonspro.com</a></li>
-                <li>📍 123 Rue de la Livraison, Ville</li>
+                <li>
+                    <i class="bi bi-telephone"></i>
+                    <a href="tel:804-790-3688">804-790-3688</a>
+                </li>
+                <li>
+                    <i class="bi bi-envelope"></i>
+                    <a href="mailto:info@livraisonspro.com">info@livraisonspro.com</a>
+                </li>
+                <li>
+                    <i class="bi bi-geo-alt"></i>
+                    123 Rue de la Livraison, Ville
+                </li>
             </ul>
         </div>
 
-    
+    </div>
 </footer>

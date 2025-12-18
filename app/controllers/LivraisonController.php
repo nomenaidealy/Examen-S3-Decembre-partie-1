@@ -62,5 +62,31 @@ class LivraisonController {
         $this->app->redirect('/');
     }
 
+    public function afficherFormulaireChangerStatut($id) {
+        $idLivraison = $id;
+
+        $livraisonModel = new LivraisonModel($this->app->db());
+        $statuts = $livraisonModel->getStatuts();
+
+        $this->app->render('formEtatLivraison.php', [
+            'idLivraison' => $idLivraison,
+            'data' => $statuts
+        ]);
+    }
+
+    public function changerStatutLivraison() {
+        $idLivraison = $this->app->request()->data->idLivraison;
+        $idStatut = $this->app->request()->data->idStatut;
+
+        if (empty($idLivraison) || empty($idStatut)) {
+            $this->app->redirect('/');
+            return;
+        }
+
+        $livraisonModel = new LivraisonModel($this->app->db());
+        $livraisonModel->updateStatutLivraison($idLivraison, $idStatut);
+
+        $this->app->redirect('/livraison/list');
+    }
 
 }

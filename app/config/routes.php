@@ -32,6 +32,8 @@ $router->group('', function(Router $router) use ($app) {
         $router->get('/form', [ LivraisonController::class, 'afficherFormulaireAjout' ]);
         $router->post('/store', [ LivraisonController::class, 'insererLivraison' ]);
         $router->get('/list', [ LivraisonController::class, 'afficherLivraisons' ]);
+        $router->get('/formStatut/@id:[0-9]+', [ LivraisonController::class, 'afficherFormulaireChangerStatut' ]);
+        $router->post('/editStatut', [ LivraisonController::class, 'changerStatutLivraison' ]);
     });
 
 

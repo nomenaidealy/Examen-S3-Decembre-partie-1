@@ -453,64 +453,30 @@ body {
         min-height: 24px;
     }
 }
+.actions-cell {
+    text-align: center;
+}
 
-/* LIVRAISON HEADER - À ajouter dans livraison.css */
-
-.livraison-header {
-    background: linear-gradient(135deg, #0f3a5f 0%, #1a5a7f 100%);
-    color: white;
-    padding: 40px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    box-shadow: 0 5px 20px rgba(15, 58, 95, 0.2);
-    display: flex;
-    justify-content: space-between;
+.btn-change-status {
+    display: inline-flex;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.livraison-header h1 {
-    font-size: 42px;
-    font-weight: 900;
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    flex: 1;
-    min-width: 300px;
-}
-
-.livraison-header p {
-    font-size: 16px;
-    color: #d0d0d0;
-    font-weight: 500;
-    width: 100%;
-    margin: 0;
-    order: 3;
-}
-
-.livraison-header a {
-    display: inline-block;
-    background: linear-gradient(135deg, #ffc107 0%, #ffb300 100%);
-    color: #0f3a5f;
-    padding: 12px 28px;
+    gap: 8px;
+    background: #1976d2;
+    color: white;
+    padding: 10px 16px;
     border-radius: 8px;
+    font-weight: 600;
     text-decoration: none;
-    font-weight: 900;
     font-size: 14px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(255, 193, 7, 0.3);
-    white-space: nowrap;
+    transition: all 0.2s ease;
 }
 
-.livraison-header a:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 193, 7, 0.4);
-    background: linear-gradient(135deg, #ffb300 0%, #ffa500 100%);
+.btn-change-status i {
+    font-size: 1.5rem;
 }
 
-.livraison-header a:active {
-    transform: translateY(-1px);
+.btn-change-status:hover {
+    background: #1565c0;
+    transform: scale(1.05);
 }
+

@@ -87,5 +87,20 @@ class LivraisonModel {
         $colisModel->updateStatutColis($idColis, 'livraison');
     }
 
+    public function getStatuts() {
+        $stmt = $this->db->prepare("SELECT * FROM el_statut_livraison");
+        $stmt->execute();
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function updateStatutLivraison(int $idLivraison, int $idStatut) {
+        $sql = "UPDATE el_livraison SET idStatut = :idStatut WHERE id = :idLivraison";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            'idStatut'   => $idStatut,
+            'idLivraison' => $idLivraison
+        ]);
+    }
 
 }
