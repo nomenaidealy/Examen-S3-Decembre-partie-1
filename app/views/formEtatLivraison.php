@@ -3,6 +3,9 @@
 <head>
     <meta charset="utf-8">
     <title>Changer le statut - Livraison <?= htmlspecialchars($idLivraison ?? '') ?></title>
+    <link rel="stylesheet" href="/assets/header.css">
+    <link rel="stylesheet" href="/assets/status.css">
+    <link rel="stylesheet" href="/assets/footer.css">
 </head>
 <body>
     <h1>Changer le statut de la livraison #<?= htmlspecialchars($idLivraison ?? '') ?></h1>
