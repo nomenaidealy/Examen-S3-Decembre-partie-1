@@ -102,4 +102,13 @@ class ColisModel {
             'idColis' => $idColis
         ]);
     }
+
+    
+    public function resetAll() {
+        $sql = "UPDATE el_colis SET statut = :statut";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            'statut' => 'non_livraison'
+        ]);
+    }
 }

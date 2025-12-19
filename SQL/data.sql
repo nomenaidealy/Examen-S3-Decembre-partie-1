@@ -124,6 +124,7 @@ CREATE TABLE el_livraison (
     chiffre_affaire DECIMAL(10,2),
     cout_revient DECIMAL(10,2),
     idZone INT NOT NULL,
+    pourcentage_zone DECIMAL(5,2) NOT NULL,
     FOREIGN KEY (idColis) REFERENCES el_colis(id),
     FOREIGN KEY (idStatut) REFERENCES el_statut_livraison(id),
     FOREIGN KEY (idVehicule) REFERENCES el_vehicules(id),
@@ -149,7 +150,8 @@ SELECT
     l.salaire_chauffeur AS salaire,
     l.chiffre_affaire AS chiffre_affaire,
     l.cout_revient AS cout_revient,
-    z.nom AS zone_livraison
+    z.nom AS zone_livraison,
+    z.pourcentage AS pourcentage_zone
 FROM el_livraison l
 JOIN el_colis c ON l.idColis = c.id
 JOIN el_statut_livraison s ON l.idStatut = s.id

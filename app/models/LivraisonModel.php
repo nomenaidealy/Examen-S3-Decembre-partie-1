@@ -109,6 +109,8 @@ class LivraisonModel {
 
     public function deleteAllLivraisons() {
         $sql = "DELETE FROM el_livraison";
+        $colisModel = new ColisModel($this->db);
+        $colisModel->resetAll();
 
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
