@@ -159,7 +159,8 @@ JOIN el_colis c ON l.idColis = c.id
 JOIN el_statut_livraison s ON l.idStatut = s.id
 JOIN el_vehicules v ON l.idVehicule = v.id
 JOIN el_livreurs ch ON l.idChauffeur = ch.id
-JOIN el_zones z ON l.idZone = z.id;
+LEFT JOIN el_zones z ON l.idZone = z.id;
+
 
 
 
