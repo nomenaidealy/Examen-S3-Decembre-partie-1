@@ -35,4 +35,43 @@ class ZoneController {
 
         $this->app->redirect('/zone/list');
     }
+
+    public function afficherFormulaireModification($id) {
+        $zoneModel = new ZoneModel($this->app->db());
+        $zones = $zoneModel->getAllZones();
+
+        $zoneToEdit = null;
+        foreach ($zones as $zone) {
+            if ((int)$zone['id'] === (int)$id) {
+                $zoneToEdit = $zone;
+                break;
+            }
+        }
+
+        if ($zoneToEdit === null) {
+            $this->app->redirect('/zone/list');
+            return;
+        }
+
+        $this->app->render('editZone.php', [
+            'zone' => $zoneToEdit
+        ]);
+    }
+
+    public function modifierZone() {
+        $id = $this->app->request()->data->id;
+        $nom = $this->app->request()->data->nom;
+        $pourcentage = $this->app->request()->data->pourcentage;
+
+        $zoneModel = new ZoneModel($this->app->db());
+        $zoneModel->updateZone($id, $nom, (float)$pourcentage);
+
+        $this->app->redirect('/zone/list');;
+    }
+
+    public function supprimerZone($id) {
+        $zoneModel = new ZoneModel($this->app->db());
+        $zoneModel->deleteZone($id);
+        $this->app->redirect('/zone/list');
+    }
 }

@@ -43,7 +43,9 @@ $router->group('', function(Router $router) use ($app) {
         $router->get('/list', [ ZoneController::class, 'afficherZones' ]);
         $router->get('/form', [ ZoneController::class, 'afficherFormulaireAjout' ]);
         $router->post('/ajout', [ ZoneController::class, 'insererZone' ]);
-        $router->get('/editForm/@id:[0-9]+', [ ZoneController::class, 'afficherFormulaireModification' ]);
+        $router->get('/edit/@id:[0-9]+', [ ZoneController::class, 'afficherFormulaireModification' ]);
+        $router->post('/update', [ ZoneController::class, 'modifierZone' ]);
+        $router->get('/delete/@id:[0-9]+', [ ZoneController::class, 'supprimerZone' ]);
     });
 
 

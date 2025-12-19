@@ -24,12 +24,13 @@
                         <span class="label-icon">📍</span>
                         Nom de Zone
                     </label>
-                    <input 
+                    <input type="number" name="id" value="<?= htmlspecialchars($zone['id']) ?>" hidden>
+                    <input  
                         type="text" 
                         id="nom"
                         name="nom" 
                         class="form-input"
-                        placeholder="Ex: Zone Nord, Zone Sud, etc..."
+                        value="<?= htmlspecialchars($zone['nom']) ?>"
                         required
                     >
                     <small class="form-help">Entrez le nom de la zone de livraison</small>
@@ -51,6 +52,7 @@
                             max="100"
                             step="0.1"
                             required
+                            value="<?= htmlspecialchars($zone['pourcentage']) ?>"
                         >
                         <span class="input-suffix">%</span>
                     </div>

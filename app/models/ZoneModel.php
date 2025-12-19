@@ -35,4 +35,24 @@ class ZoneModel {
         ]);
     }
 
+    public function updateZone(int $id, string $nom, float $pourcentage) {
+        $sql = "UPDATE el_zones SET nom = :nom, pourcentage = :pourcentage WHERE id = :id";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            ':id' => $id,
+            ':nom' => $nom,
+            ':pourcentage' => $pourcentage
+        ]);
+    }
+
+    public function deleteZone(int $id) {
+        $sql = "DELETE FROM el_zones WHERE id = :id";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            ':id' => $id
+        ]);
+    }
+
 }
