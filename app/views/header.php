@@ -13,6 +13,7 @@
             <li><a href="/colis/list">Colis</a></li>
             <li><a href="/livraison/list">Livraisons</a></li>
             <li><a href="/benefice/form">Benefice</a></li>
+            <li><a href="/zone/list">Zones</a></li>
         </ul>
     </div>
 </nav>

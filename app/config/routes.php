@@ -4,6 +4,7 @@ use app\controllers\ApiExampleController;
 use app\controllers\LivraisonController;
 use app\controllers\ColisController;
 use app\controllers\BeneficeController;
+use app\controllers\ZoneController;
 use app\middlewares\SecurityHeadersMiddleware;
 use flight\Engine;
 use flight\net\Router;
@@ -36,6 +37,10 @@ $router->group('', function(Router $router) use ($app) {
         $router->get('/list', [ LivraisonController::class, 'afficherLivraisons' ]);
         $router->get('/formStatut/@id:[0-9]+', [ LivraisonController::class, 'afficherFormulaireChangerStatut' ]);
         $router->post('/editStatut', [ LivraisonController::class, 'changerStatutLivraison' ]);
+    });
+
+    $router->group('/zone', function() use ($router) {
+        $router->get('/list', [ ZoneController::class, 'afficherZones' ]);
     });
 
 

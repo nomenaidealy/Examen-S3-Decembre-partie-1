@@ -141,13 +141,13 @@
 
 Partie 2 :
     [x] Insertion des données de la partie 2                            (By Idealy)
-    [] Calcul salaire selon le pourcentage de la zone :
+    [x] Calcul salaire selon le pourcentage de la zone :                (By Ayman)
         - Modification de la fonction calcul salaire :
             - fonction de récupération du pourcentage de la zone by id zone
             - modification du calcul du salaire en fonction du pourcentage : salaire de base + (salaire de base * pourcentage/100)
     [] Zones de livraison :
         base :
-            - zones
+            (ok) - zones
         view :
             - formulaire d'insertion de zone (nom , pourcentage)
         integration php :
