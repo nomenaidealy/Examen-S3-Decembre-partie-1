@@ -140,7 +140,7 @@
             -calcul benefice par filtre 
 
 Partie 2 :
-    [] Insertion des données de la partie 2
+    [x] Insertion des données de la partie 2                            (By Idealy)
     [] Calcul salaire selon le pourcentage de la zone :
         - Modification de la fonction calcul salaire :
             - fonction de récupération du pourcentage de la zone by id zone
