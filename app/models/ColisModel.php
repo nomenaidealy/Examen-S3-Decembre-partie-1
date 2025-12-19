@@ -37,27 +37,37 @@ class ColisModel {
         $stmt->execute();
     }
 
-    public function getPrixColisByIdAndDate(int $idColis, string $date) {
+    public function getChiffreAffaireCalcule(int $idColis, string $date): ?float {
         $sql = "
-            SELECT ca.prix
+            SELECT ca.prix, ca.poids AS ca_poids, c.poids AS colis_poids
             FROM el_colis c
-            JOIN el_chiffre_affaire ca ON ca.poids = c.poids
+            CROSS JOIN el_chiffre_affaire ca
             WHERE c.id = :idColis
               AND ca.date_debut <= :date
               AND (ca.date_fin IS NULL OR ca.date_fin >= :date)
             ORDER BY ca.date_debut DESC
             LIMIT 1
         ";
-
         $stmt = $this->db->prepare($sql);
         $stmt->execute([
             'idColis' => $idColis,
             'date' => $date
         ]);
+        $res = $stmt->fetch(\PDO::FETCH_ASSOC);
+        if (!$res) {
+            return null;
+        }
 
-        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        $prix = (float) $res['prix'];
+        $ca_poids = (float) $res['ca_poids'];
+        $colis_poids = (float) $res['colis_poids'];
 
-        return $result ? $result['prix'] : null;
+        if ($ca_poids <= 0) {
+            return null;
+        }
+
+        $ca = ($prix * $colis_poids) / $ca_poids;
+        return round($ca, 2);
     }
     
     public function updateStatutColis(int $idColis, string $statut) {
