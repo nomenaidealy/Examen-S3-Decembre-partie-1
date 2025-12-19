@@ -34,7 +34,7 @@ class LivraisonModel {
         $colisModel   = new ColisModel($this->db);
 
         $salaireChauffeur     = $livreurModel->getSalaireAvecZoneByChauffeurAndDate($idChauffeur, $date_livraison, $idZone);
-        $chiffreAffaireColis  = $colisModel->getPrixColisByIdAndDate($idColis, $date_livraison);
+        $chiffreAffaireColis  = $colisModel->getChiffreAffaireCalcule($idColis, $date_livraison);
 
         // Sécurité
         if ($salaireChauffeur === null || $chiffreAffaireColis === null) {

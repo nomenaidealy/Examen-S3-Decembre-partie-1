@@ -90,7 +90,7 @@ class ColisModel {
         }
 
         $ca = ($prix * $colis_poids) / $ca_poids;
-        return round($ca, 2);
+        return $ca;
     }
     
     public function updateStatutColis(int $idColis, string $statut) {

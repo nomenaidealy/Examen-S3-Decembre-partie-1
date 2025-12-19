@@ -37,6 +37,8 @@ $router->group('', function(Router $router) use ($app) {
         $router->get('/list', [ LivraisonController::class, 'afficherLivraisons' ]);
         $router->get('/formStatut/@id:[0-9]+', [ LivraisonController::class, 'afficherFormulaireChangerStatut' ]);
         $router->post('/editStatut', [ LivraisonController::class, 'changerStatutLivraison' ]);
+        $router->get('/supAll', [ LivraisonController::class, 'afficherFormSuppAll' ]);
+        $router->post('/confirmDelete', [ LivraisonController::class, 'supprimerToutesLivraisons' ]);
     });
 
     $router->group('/zone', function() use ($router) {

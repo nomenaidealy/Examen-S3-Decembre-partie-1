@@ -96,4 +96,24 @@ class LivraisonController {
         $this->app->redirect('/livraison/list');
     }
 
+    public function afficherFormSuppAll() {
+        $this->app->render('confirmDelete.php');
+    }
+
+    public function supprimerToutesLivraisons() {
+        $livraisonModel = new LivraisonModel($this->app->db());
+
+        $code = $this->app->request()->data->code;
+
+        if ($code != 9999) {
+            $this->app->render('confirmDelete.php', [
+                'error' => 'Code de confirmation incorrect. La suppression a été annulée.'
+            ]);
+            return;
+        }
+        $livraisonModel->deleteAllLivraisons();
+
+        $this->app->redirect('/livraison/list');
+    }
+
 }
