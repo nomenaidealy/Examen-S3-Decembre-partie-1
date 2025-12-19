@@ -159,7 +159,7 @@
 
                    <div style="margin-top:8px;">
                       <label for="pourcentage" class="form-label">Pourcentage zone :</label>
-                      <input type="number" id="pourcentage" name="pourcentage" class="form-input" value="">
+                      <input type="number" id="pourcentage" step = "0.01" name="pourcentage" class="form-input" value="">
                   </div>
 
             <!-- ACTIONS -->
