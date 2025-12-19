@@ -55,7 +55,8 @@ class LivraisonModel {
                 cout_vehicule,
                 salaire_chauffeur,
                 chiffre_affaire,
-                cout_revient
+                cout_revient,
+                idZone
             ) VALUES (
                 :idColis,
                 :adresse_depart,
@@ -67,7 +68,8 @@ class LivraisonModel {
                 :coutVehicule,
                 :salaireChauffeur,
                 :chiffreAffaire,
-                :coutRevient
+                :coutRevient,
+                :idZone
             )
         ";
 
@@ -83,7 +85,8 @@ class LivraisonModel {
             ':coutVehicule'     => (float)$coutVehicule,
             ':salaireChauffeur' => (float)$salaireChauffeur,
             ':chiffreAffaire'   => (float)$chiffreAffaireColis,
-            ':coutRevient'      => (float)$cout_revient
+            ':coutRevient'      => (float)$cout_revient,
+            ':idZone'           => (int)$idZone
         ]);
         $colisModel->updateStatutColis($idColis, 'livraison');
     }
