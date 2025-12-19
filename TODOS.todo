@@ -1,4 +1,4 @@
-[] CREATION DE LA BASE :                         QUI : idealy (10 mn)                             STATUS  = OK
+[X] CREATION DE LA BASE :                         QUI : idealy et ayman (10 mn)                             STATUS  = OK
     - [] vehicules :
         - id
         - numéro d'immatriculation
@@ -17,6 +17,7 @@
     - [] zones :
         - id 
         - nom
+        - pourcentage (partie 2)
 
     - [] colis :
         - id
@@ -48,10 +49,11 @@
         - salaire chauffeur (à select dans la base salaire employee par rapport à la date de livraisono)
         - chiffre d'affaire (à calculer par rapport à labase chiffre d'affaire)
         - coût de revient (à calculer)
+        - zone de livraison (FK zones) (Partie 2)
 
     
-[] Gestion de livraison :
-    - [] Création de colis :                                QUI: idealy                                            STATUS : EN COURS 
+[X] Gestion de livraison :
+    - [ok] Création de colis :                                QUI: idealy                                            STATUS : EN COURS 
         
         - description
         - poids
@@ -75,7 +77,7 @@
         routage :
             - lien vers la page d'insertion --colis/edit
 
-    - [] Creation de livraison :    Ayman
+    - [ok] Creation de livraison :                            QUI: Ayman
         - dropdown de colis
         - addresse de destination
         - date
@@ -106,7 +108,7 @@
             - calcul du coût de revient
         
 
-    - [] Statut de livraison (liste de livraison) :
+    - [ok] Statut de livraison (liste de livraison) :               QUI : Ayman
         - de base les livraisons sont en attente
         - mettre en attente
         - annuler la livraison
@@ -125,7 +127,7 @@
         function: 
             - update  status 
 
-    - [] Bénéfice par période :
+    - [ok] Bénéfice par période :                           QUI : idealy
         - filtre par mois jour annee
 
         base : 
@@ -137,3 +139,29 @@
         fonction : 
             -calcul benefice par filtre 
 
+Partie 2 :
+    [] Insertion des données de la partie 2
+    [] Calcul salaire selon le pourcentage de la zone :
+        - Modification de la fonction calcul salaire :
+            - fonction de récupération du pourcentage de la zone by id zone
+            - modification du calcul du salaire en fonction du pourcentage : salaire de base + (salaire de base * pourcentage/100)
+    [] Zones de livraison :
+        base :
+            - zones
+        view :
+            - formulaire d'insertion de zone (nom , pourcentage)
+        integration php :
+            model :
+                - ZoneModel
+            controller :
+                - ZoneController
+        function :
+            - fonction d'insertion dans la base (model, controller)
+            - fonction de suppression dans la base (model, controller)
+            - fonction de modification dans la base (model, controller)
+        routage :
+            - lien vers la page d'insertion --zones/suppression/modification/ajout
+    [] Ajout bouton de suppression de toutes les livraisons même validé avec un code de confirmation :
+        - ajout d'un bouton de suppression dans la liste des livraisons
+        - ajout d'une fenêtre de confirmation avant la suppression
+        - ajout d'une fonction de suppression dans le controller et le model
