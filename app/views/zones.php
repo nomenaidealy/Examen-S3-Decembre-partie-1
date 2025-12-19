@@ -37,7 +37,7 @@
                             <span class="percentage-badge"><?= $zone['pourcentage'] ?>%</span>
                         </td>
                         <td class="action-cell">
-                            <a href="/zone/editForm/<?= $zone['id'] ?>" class="btn-edit" title="Modifier">✏️</a>
+                            <a href="/zone/edit/<?= $zone['id'] ?>" class="btn-edit" title="Modifier">✏️</a>
                             <a href="/zone/delete/<?= $zone['id'] ?>" class="btn-delete" title="Supprimer" onclick="return confirm('Êtes-vous sûr?')">🗑️</a>
                         </td>
                     </tr>
