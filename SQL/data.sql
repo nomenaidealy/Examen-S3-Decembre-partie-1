@@ -148,12 +148,14 @@ SELECT
     l.cout_vehicule AS cout_vehicule,
     l.salaire_chauffeur AS salaire,
     l.chiffre_affaire AS chiffre_affaire,
-    l.cout_revient AS cout_revient
+    l.cout_revient AS cout_revient,
+    z.nom AS zone_livraison
 FROM el_livraison l
 JOIN el_colis c ON l.idColis = c.id
 JOIN el_statut_livraison s ON l.idStatut = s.id
 JOIN el_vehicules v ON l.idVehicule = v.id
-JOIN el_livreurs ch ON l.idChauffeur = ch.id;
+JOIN el_livreurs ch ON l.idChauffeur = ch.id
+JOIN el_zones z ON l.idZone = z.id;
 
 
 

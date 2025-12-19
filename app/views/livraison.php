@@ -18,6 +18,7 @@
             <h1>Liste des Livraisons</h1>
             <p>Gestion complète de vos livraisons et performances</p>
             <a href="/livraison/form">Ajouter livraison</a>
+            <a href="/livraison/supAll">Supprimer toute les livraison</a>
         </div>
 
         
@@ -38,6 +39,7 @@
                         <th>Salaire</th>
                         <th>CA</th>
                         <th>Coût Revient</th>
+                        <th>Zone</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -71,6 +73,9 @@
                         </td>
                         <td data-label="Coût Revient" class="cost-return-cell">
                             <span class="cost-return-value">$<?= $l['cout_revient'] ?></span>
+                        </td>
+                        <td data-label="CA" class="revenue-cell">
+                            <span class="revenue-value"><?= $l['zone_livraison'] ?></span>
                         </td>
                         <?php if (strtolower($l['statut']) !== 'livre') { ?>
 
