@@ -39,4 +39,22 @@ class LivreurModel {
 
         return $result ? $result['montant'] : null;
     }
+
+    public function getSalaireAvecZoneByChauffeurAndDate(int $idChauffeur, string $date, int $idZone)  {
+        $salaire = $this->getSalaireByChauffeurAndDate($idChauffeur, $date);
+        if ($salaire === null) {
+            return null;
+        }
+
+        $zoneModel = new ZoneModel($this->db);
+        $pourcentage = $zoneModel->getZonePourcentageById($idZone);
+        if ($pourcentage === null) {
+            $pourcentage = 0.0;
+        }
+
+        $base = (float) $salaire;
+        $total = $base + ($base * ($pourcentage) / 100.0);
+
+        return $total;
+    }
 }

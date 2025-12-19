@@ -35,10 +35,15 @@ class LivraisonController {
         $vehiculeModel = new VehiculeModel($this->app->db());
         $vehicules = $vehiculeModel->getListVehicules();
 
+        $zoneModel = new ZoneModel($this->app->db());
+        $zones = $zoneModel->getAllZones();
+
+
         $this->app->render('formLivraison.php', [
             'colis'     => $colis,
             'livreurs'  => $livreurs,
-            'vehicules' => $vehicules
+            'vehicules' => $vehicules,
+            'zones'     => $zones
         ]);
     }
 
@@ -49,6 +54,7 @@ class LivraisonController {
         $idVehicule = $this->app->request()->data->idVehicule;
         $idChauffeur = $this->app->request()->data->idChauffeur;
         $coutVehicule = $this->app->request()->data->cout_vehicule;
+        $idZone = $this->app->request()->data->idZone;
         $addresse_depart = "Entrepot Central"; // Adresse fixe pour le dépôt
 
         if (empty($idColis) || empty($adresse_destination) || empty($date_livraison) || empty($idVehicule) || empty($idChauffeur)) {
@@ -57,7 +63,7 @@ class LivraisonController {
         }
 
         $livraisonModel = new LivraisonModel($this->app->db());
-        $livraisonModel->insertLivraison($idColis, $addresse_depart, $adresse_destination, $date_livraison, $idVehicule, $idChauffeur, $coutVehicule);
+        $livraisonModel->insertLivraison($idColis, $addresse_depart, $adresse_destination, $date_livraison, $idVehicule, $idChauffeur, $coutVehicule, $idZone);
 
         $this->app->redirect('/');
     }

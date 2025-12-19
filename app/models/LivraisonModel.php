@@ -24,7 +24,8 @@ class LivraisonModel {
         $date_livraison,
         $idVehicule,
         $idChauffeur,
-        $coutVehicule
+        $coutVehicule,
+        $idZone
     ) {
         // ID du statut "En attente"
         $idStatus = 1;
@@ -32,7 +33,7 @@ class LivraisonModel {
         $livreurModel = new LivreurModel($this->db);
         $colisModel   = new ColisModel($this->db);
 
-        $salaireChauffeur     = $livreurModel->getSalaireByChauffeurAndDate($idChauffeur, $date_livraison);
+        $salaireChauffeur     = $livreurModel->getSalaireAvecZoneByChauffeurAndDate($idChauffeur, $date_livraison, $idZone);
         $chiffreAffaireColis  = $colisModel->getPrixColisByIdAndDate($idColis, $date_livraison);
 
         // Sécurité

@@ -74,6 +74,30 @@
                 </div>
             </div>
 
+            <!-- SECTION ZONE -->
+           <div class="form-section">
+               <h3 class="section-title">
+                   <i class="bi bi-geo-fill"></i>
+                   Zone
+               </h3>
+               <div class="form-group">
+                   <label class="form-label">
+                       <i class="bi bi-flag label-icon"></i>
+                       Sélectionner la zone
+                   </label>
+                   <select name="idZone" class="form-select" required>
+                       <option value="">-- Sélectionner une zone --</option>
+                       <?php if (!empty($zones)): ?>
+                           <?php foreach ($zones as $z): ?>
+                               <option value="<?= htmlspecialchars($z['id']) ?>">
+                                   <?= htmlspecialchars($z['nom']) ?> (<?= htmlspecialchars($z['pourcentage']) ?>%)
+                               </option>
+                           <?php endforeach; ?>
+                       <?php endif; ?>
+                   </select>
+               </div>
+           </div>
+
             <!-- SECTION 3 -->
             <div class="form-section">
                 <h3 class="section-title">
