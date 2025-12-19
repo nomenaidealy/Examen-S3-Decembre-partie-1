@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/assets/acceuil.css">
     <link rel="stylesheet" href="/assets/footer.css">
     <link rel="stylesheet" href="/assets/header.css">
+    <link rel="stylesheet" href="/assets/bootstrap-icons/bootstrap-icons.css">
 </head>
 <body>
     <!-- NAVBAR -->

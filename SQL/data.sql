@@ -197,8 +197,9 @@ JOIN el_livreurs ch
 CREATE OR REPLACE VIEW v_date_livraison AS 
 select YEAR(date_livraison) as annee, 
 MONTH(date_livraison) as mois ,  
-DAY(date_livraison) as jour , cout_revient, chiffre_affaire  
-from el_livraison ;
+DAY(date_livraison) as jour , cout_revient, chiffre_affaire , (chiffre_affaire-cout_revient) as benefice,
+idStatut as statut  
+from el_livraison where idStatut = 2  ;
 
 
 

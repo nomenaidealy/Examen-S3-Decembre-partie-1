@@ -60,6 +60,7 @@ $router->group('', function(Router $router) use ($app) {
             $app->render('formBenefice', ['message' => 'Direction vers benefice.php', 'resultat' => null]);
         });
         $router->post('/filtre', [ BeneficeController::class, 'calculBenefice']);
+        $router->post('/detail', [BeneficeController::class, 'getBenefice' ]) ;
     });
       
 }, [ SecurityHeadersMiddleware::class ]);

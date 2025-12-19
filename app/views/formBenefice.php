@@ -39,6 +39,13 @@
             <div class="result-box">
                 <h2>Le bénéfice total est : <span class="result-value"><?= htmlspecialchars($resultat) ?></span></h2>
             </div>
+            <form action="/benefice/detail" method = "POST" class="benefice-form">
+                <input type="hidden" name="jourDetail" value = "<?php echo $jourDetail ?>">
+                <input type="hidden" name="moisDetail" value= "<?php echo $moisDetail ?>">
+                <input type="hidden" name="anneeDetail" value= "<?php echo $anneeDetail ?>">
+                <button type="submit" class="btn-submit">Voir detail</button>
+            </form>
+           
             <?php endif; ?>
         </div>
     </main>

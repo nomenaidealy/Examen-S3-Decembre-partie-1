@@ -72,13 +72,16 @@
                         <td data-label="Coût Revient" class="cost-return-cell">
                             <span class="cost-return-value">$<?= $l['cout_revient'] ?></span>
                         </td>
+                        <?php if (strtolower($l['statut']) !== 'livre') { ?>
+
                         <td data-label="Actions" class="actions-cell">
                             <a href="/livraison/formStatut/<?= $l['id_livraison'] ?>" 
                             class="btn-change-status" 
                             title="Changer le statut">
                                 <i class="bi bi-arrow-repeat"></i> Changer statut
                             </a>
-                        </td>             
+                        </td>     
+                        <?php } ?>        
                     </tr>
                     <?php endforeach; ?>
 

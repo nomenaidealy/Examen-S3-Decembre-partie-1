@@ -24,10 +24,22 @@ class BeneficeController {
 
         $this->app->render('formBenefice', [
             'message' => 'Résultat du filtre',
-            'resultat' => $benefice
+            'resultat' => $benefice,
+            'jourDetail' =>  $jour,
+            'moisDetail' => $mois,
+            'anneeDetail' => $annee
         ]);
     }
 
+    public function getBenefice() {
+         $jour  = $this->app->request()->data->jourDetail !== '' ? (int)$this->app->request()->data->jourDetail : null;
+        $mois  = $this->app->request()->data->moisDetail !== '' ? (int)$this->app->request()->data->moisDetail : null;
+        $annee = $this->app->request()->data->anneeDetail !== '' ? (int)$this->app->request()->data->anneeDetail : null;
+
+        $beneficeModel = new BeneficeModel($this->app->db());
+        $benefice = $beneficeModel->filtrer($jour, $mois, $annee);
+        $this->app->render('beneficeDetail', ['data' => $benefice]);
+    }
 
 
 }
