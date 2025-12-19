@@ -100,8 +100,10 @@ class LivraisonController {
         $this->app->render('confirmDelete.php');
     }
 
-    public function supprimerToutesLivraisons($code) {
+    public function supprimerToutesLivraisons() {
         $livraisonModel = new LivraisonModel($this->app->db());
+
+        $code = $this->app->request()->data->code;
 
         if ($code != 9999) {
             $this->app->render('confirmDelete.php', [
