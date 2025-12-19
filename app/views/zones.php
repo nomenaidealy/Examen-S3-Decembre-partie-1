@@ -14,7 +14,7 @@
     <main class="zone-container">
         <div class="zone-header">
             <h1>Liste des Zones</h1>
-            <a href="/zone/ajout" class="btn-add-zone">Ajouter Zone</a>
+            <a href="/zone/form" class="btn-add-zone">Ajouter Zone</a>
             <p>Gérez les zones de livraison</p>
         </div>
 

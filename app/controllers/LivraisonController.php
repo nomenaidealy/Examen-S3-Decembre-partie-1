@@ -7,6 +7,7 @@ use app\models\LivraisonModel;
 use app\models\ColisModel;
 use app\models\LivreurModel;
 use app\models\VehiculeModel;
+use app\models\ZoneModel;
 
 class LivraisonController {
 

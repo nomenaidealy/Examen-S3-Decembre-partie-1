@@ -21,4 +21,18 @@ class ZoneController {
             'data' => $zones
         ]);
     }
+
+    public function afficherFormulaireAjout() {
+        $this->app->render('formZone.php');
+    }
+
+    public function insererZone() {
+        $nom = $this->app->request()->data->nom;
+        $pourcentage = $this->app->request()->data->pourcentage;
+
+        $zoneModel = new ZoneModel($this->app->db());
+        $zoneModel->insererZone($nom, (float)$pourcentage);
+
+        $this->app->redirect('/zone/list');
+    }
 }

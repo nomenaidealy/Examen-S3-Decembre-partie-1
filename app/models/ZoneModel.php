@@ -25,4 +25,14 @@ class ZoneModel {
         return (float) $res['pourcentage'];
     }
 
+    public function insererZone(string $nom, float $pourcentage) {
+        $sql = "INSERT INTO el_zones (nom, pourcentage) VALUES (:nom, :pourcentage)";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            ':nom' => $nom,
+            ':pourcentage' => $pourcentage
+        ]);
+    }
+
 }

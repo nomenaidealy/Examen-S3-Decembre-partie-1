@@ -41,6 +41,8 @@ $router->group('', function(Router $router) use ($app) {
 
     $router->group('/zone', function() use ($router) {
         $router->get('/list', [ ZoneController::class, 'afficherZones' ]);
+        $router->get('/form', [ ZoneController::class, 'afficherFormulaireAjout' ]);
+        $router->post('/ajout', [ ZoneController::class, 'insererZone' ]);
     });
 
 
