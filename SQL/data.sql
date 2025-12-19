@@ -123,14 +123,16 @@ CREATE TABLE el_livraison (
     salaire_chauffeur DECIMAL(10,2),
     chiffre_affaire DECIMAL(10,2),
     cout_revient DECIMAL(10,2),
-    idZone INT NOT NULL,
+    idZone INT NULL,
     pourcentage_zone DECIMAL(5,2) NOT NULL,
     FOREIGN KEY (idColis) REFERENCES el_colis(id),
     FOREIGN KEY (idStatut) REFERENCES el_statut_livraison(id),
     FOREIGN KEY (idVehicule) REFERENCES el_vehicules(id),
     FOREIGN KEY (idChauffeur) REFERENCES el_livreurs(id),
     FOREIGN KEY (idZone) REFERENCES el_zones(id)
+        ON DELETE SET NULL
 );
+
 
 -- Aucune donnée insérée ici comme demandé
 
