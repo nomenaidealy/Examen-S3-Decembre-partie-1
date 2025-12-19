@@ -107,4 +107,11 @@ class LivraisonModel {
         ]);
     }
 
+    public function deleteAllLivraisons() {
+        $sql = "DELETE FROM el_livraison";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+    }
+
 }
