@@ -40,14 +40,16 @@ class LivreurModel {
         return $result ? $result['montant'] : null;
     }
 
-    public function getSalaireAvecZoneByChauffeurAndDate($idChauffeur, $date,$pourcentage_zone) { 
+    public function getSalaireAvecZoneByChauffeurAndDate($idChauffeur, $date,$pourcentage_zone, $idColis, $date_livraison) { 
         $salaire = $this->getSalaireByChauffeurAndDate($idChauffeur, $date);
         if ($salaire === null) {
             return null;
         }
-
+        $colisModel = new ColisModel($this->db);
+        $prixColis = $colisModel->getPrixColisByIdAndDate($idColis, $date_livraison);
+        if ($prixColis === null)
         $base = (float) $salaire;
-        $total = $base + ($base * ($pourcentage_zone) / 100.0);
+        $total = $base + ($prixColis * ($pourcentage_zone) / 100.0);
 
         return $total;
     }
