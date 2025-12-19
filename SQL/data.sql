@@ -151,7 +151,7 @@ SELECT
     l.chiffre_affaire AS chiffre_affaire,
     l.cout_revient AS cout_revient,
     z.nom AS zone_livraison,
-    z.pourcentage AS pourcentage_zone
+    l.pourcentage_zone AS pourcentage_zone
 FROM el_livraison l
 JOIN el_colis c ON l.idColis = c.id
 JOIN el_statut_livraison s ON l.idStatut = s.id

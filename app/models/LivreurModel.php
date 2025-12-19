@@ -18,7 +18,7 @@ class LivreurModel {
     /**
      * Récupérer le salaire d'un chauffeur à une date donnée
      */
-    public function getSalaireByChauffeurAndDate(int $idChauffeur, string $date) {
+    public function getSalaireByChauffeurAndDate($idChauffeur, $date) {
         $sql = "
             SELECT montant
             FROM el_salaire_employe
@@ -40,20 +40,14 @@ class LivreurModel {
         return $result ? $result['montant'] : null;
     }
 
-    public function getSalaireAvecZoneByChauffeurAndDate(int $idChauffeur, string $date, int $idZone)  {
+    public function getSalaireAvecZoneByChauffeurAndDate($idChauffeur, $date,$pourcentage_zone) { 
         $salaire = $this->getSalaireByChauffeurAndDate($idChauffeur, $date);
         if ($salaire === null) {
             return null;
         }
 
-        $zoneModel = new ZoneModel($this->db);
-        $pourcentage = $zoneModel->getZonePourcentageById($idZone);
-        if ($pourcentage === null) {
-            $pourcentage = 0.0;
-        }
-
         $base = (float) $salaire;
-        $total = $base + ($base * ($pourcentage) / 100.0);
+        $total = $base + ($base * ($pourcentage_zone) / 100.0);
 
         return $total;
     }

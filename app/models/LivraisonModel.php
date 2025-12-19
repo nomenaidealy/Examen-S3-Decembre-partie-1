@@ -25,7 +25,8 @@ class LivraisonModel {
         $idVehicule,
         $idChauffeur,
         $coutVehicule,
-        $idZone
+        $idZone,
+        $pourcentage_zone
     ) {
         // ID du statut "En attente"
         $idStatus = 1;
@@ -33,7 +34,7 @@ class LivraisonModel {
         $livreurModel = new LivreurModel($this->db);
         $colisModel   = new ColisModel($this->db);
 
-        $salaireChauffeur     = $livreurModel->getSalaireAvecZoneByChauffeurAndDate($idChauffeur, $date_livraison, $idZone);
+        $salaireChauffeur     = $livreurModel->getSalaireAvecZoneByChauffeurAndDate($idChauffeur, $date_livraison, $pourcentage_zone);
         $chiffreAffaireColis  = $colisModel->getChiffreAffaireCalcule($idColis, $date_livraison);
 
         // Sécurité
@@ -56,7 +57,8 @@ class LivraisonModel {
                 salaire_chauffeur,
                 chiffre_affaire,
                 cout_revient,
-                idZone
+                idZone,
+                pourcentage_zone
             ) VALUES (
                 :idColis,
                 :adresse_depart,
@@ -69,7 +71,8 @@ class LivraisonModel {
                 :salaireChauffeur,
                 :chiffreAffaire,
                 :coutRevient,
-                :idZone
+                :idZone,
+                :pourcentage_zone
             )
         ";
 
@@ -86,7 +89,8 @@ class LivraisonModel {
             ':salaireChauffeur' => (float)$salaireChauffeur,
             ':chiffreAffaire'   => (float)$chiffreAffaireColis,
             ':coutRevient'      => (float)$cout_revient,
-            ':idZone'           => (int)$idZone
+            ':idZone'           => (int)$idZone,
+            ':pourcentage_zone' => (float)$pourcentage_zone
         ]);
         $colisModel->updateStatutColis($idColis, 'livraison');
     }

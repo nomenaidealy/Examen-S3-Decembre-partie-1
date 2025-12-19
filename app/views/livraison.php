@@ -40,6 +40,7 @@
                         <th>CA</th>
                         <th>Coût Revient</th>
                         <th>Zone</th>
+                        <th>Pourcentage Zone</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -77,6 +78,10 @@
                         <td data-label="CA" class="revenue-cell">
                             <span class="revenue-value"><?= $l['zone_livraison'] ?></span>
                         </td>
+                        <td data-label="CA" class="revenue-cell">
+                            <span class="revenue-value"><?= $l['pourcentage_zone'] ?></span>
+                        </td>
+
                         <?php if (strtolower($l['statut']) !== 'livre') { ?>
 
                         <td data-label="Actions" class="actions-cell">

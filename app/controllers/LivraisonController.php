@@ -57,6 +57,7 @@ class LivraisonController {
         $coutVehicule = $this->app->request()->data->cout_vehicule;
         $idZone = $this->app->request()->data->idZone;
         $addresse_depart = "Entrepot Central"; // Adresse fixe pour le dépôt
+        $pourcentage_zone = $this->app->request()->data->pourcentage;
 
         if (empty($idColis) || empty($adresse_destination) || empty($date_livraison) || empty($idVehicule) || empty($idChauffeur)) {
             $this->app->redirect('/livraison/form');
@@ -64,7 +65,7 @@ class LivraisonController {
         }
 
         $livraisonModel = new LivraisonModel($this->app->db());
-        $livraisonModel->insertLivraison($idColis, $addresse_depart, $adresse_destination, $date_livraison, $idVehicule, $idChauffeur, $coutVehicule, $idZone);
+        $livraisonModel->insertLivraison($idColis, $addresse_depart, $adresse_destination, $date_livraison, $idVehicule, $idChauffeur, $coutVehicule, $idZone, $pourcentage_zone);
 
         $this->app->redirect('/');
     }
